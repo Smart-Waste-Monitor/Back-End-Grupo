@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Por que comprar o Smart Waste Monitor</h2>
+
+    Quantas coletas na semana você faz?<br>
+    <input type="text" id="input_coleta"><br><br>
+    
+    Quanto você paga por coleta?<br>
+    <input type="text" id="input_custo"><br><br>
+
+    <button onclick="calcular()">Simular Economia</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>  
+
+    function calcular(){
+
+        let qtdColetas = Number(input_coleta.value);
+        let valorColeta = Number(input_custo.value);
+
+        let qtdColetas_Mes = qtdColetas * 4;
+        let custoTotal = qtdColetas_Mes * valorColeta
+        let custoAno = custoTotal * 12;
+
+    div_mensagem.innerHTML = `O custo total mensal até o momento: R$${custoTotal}<br>
+    O custo total anual até o momento: R$${custoAno}`
+                   
+    div_mensagem.innerHTML += `<br>Você pode mudar isso, pagando muito menos!!`
+    }
+</script>
