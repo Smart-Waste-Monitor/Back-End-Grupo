@@ -4,9 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+<style>
+    body {
+        font-family:Arial, Helvetica, sans-serif;
+        background: #f8fafc;
+        margin: 0;
+        padding: 0;
+    }
+
+    .titulo{
+        display: flex;
+        justify-content: center;
+        color: #111827;
+    }
+
+    h2 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 20px;
+    }
+
+    input {
+        width: 93%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #d1d5db;
+        font-size: 14px;
+        background: #f9fafb;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #111827;
+        background: white;
+    }
+
+    button {
+        margin-top: 10px;
+        padding: 14px;
+        width: 100%;
+        background: #111827;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #283344;
+    }
+
+    .alerta {
+        color: #dc2626;
+        font-weight: 600;
+    }
+</style>
 </head>
 <body>
+    <div class="titulo">
     <h2>Por que comprar o Smart Waste Monitor</h2>
+    </div>
 
     Quantas coletas na semana você faz?<br>
     <input type="text" id="input_coleta"><br><br>
@@ -14,6 +75,8 @@
     Quanto você paga por coleta?<br>
     <input type="text" id="input_custo"><br><br>
 
+    Com quantos % o lixo é coletado hoje?
+    <input type="text" id="input_percentual"><br><br>
     <button onclick="calcular()">Simular Economia</button>
     <div id="div_mensagem"></div>
 </body>
@@ -24,6 +87,7 @@
 
         let qtdColetas = Number(input_coleta.value);
         let valorColeta = Number(input_custo.value);
+        let percentualAtual = Number(input_percentual.value);
 
         let qtdColetas_Mes = qtdColetas * 4;
         let custoTotal = qtdColetas_Mes * valorColeta
