@@ -7,7 +7,7 @@
 
 <style>
     body {
-        font-family:Arial, Helvetica, sans-serif;
+        font-family: 'Inter', 'Segoe UI', sans-serif;
         background: #f8fafc;
         margin: 0;
         padding: 0;
@@ -102,12 +102,21 @@
         color: #374151;
         line-height: 1.6;
     }
+
+    .destaque {
+        color: #16a34a;
+        font-weight: 600;
+    }
 </style>
 </head>
 <body>
     <div class="titulo">
-    <h2>Por que comprar o Smart Waste Monitor</h2>
+        <h1>Por que comprar o Smart Waste Monitor</h1>
     </div>
+
+    <h2>Descubra Quanto Você Está Perdendo</h2>
+
+    <b> Plano Mensal — R$ 2.990/mês</b><br>
 
     Quantas coletas na semana você faz?<br>
     <input type="text" id="input_coleta"><br><br>
@@ -118,6 +127,7 @@
     Com quantos % o lixo é coletado hoje?
     <input type="text" id="input_percentual"><br><br>
     <button onclick="calcular()">Simular Economia</button>
+
     <div id="div_mensagem"></div>
 </body>
 </html>
@@ -125,17 +135,41 @@
 
     function calcular(){
 
-        let qtdColetas = Number(input_coleta.value);
-        let valorColeta = Number(input_custo.value);
-        let percentualAtual = Number(input_percentual.value);
+        let usoIdeal = 96;
+        let investimento = 2500;
 
-        let qtdColetas_Mes = qtdColetas * 4;
-        let custoTotal = qtdColetas_Mes * valorColeta
-        let custoAno = custoTotal * 12;
+        let coletasMensais = qtdColetas * 4;
+        let custoAtual = coletasMensais * valorColeta;
+        let coletasOtimizadas = coletasMensais * (percentualAtual / usoIdeal);
+        let custoOtimizado = coletasOtimizadas * valorColeta;
+        let economia = custoAtual - custoOtimizado;
+        let economiaAno = economia * 12;
+        let lucroMensal = economia - investimento;
+        let roi = (lucroMensal / investimento) * 100;
+        let payback = investimento / economia;
 
-    div_mensagem.innerHTML = `O custo total mensal até o momento: R$${custoTotal}<br>
-    O custo total anual até o momento: R$${custoAno}`
-                   
-    div_mensagem.innerHTML += `<br>Você pode mudar isso, pagando muito menos!!`
+        resultado.innerHTML = `
+                <!-- GASTO ATUAL -->
+                Gasto atual mensal ${custoAtual.toLocaleString("pt-BR", {style: "currency",currency: "BRL"})}
+                    
+                <!-- GASTO OTIMIZADO -->
+               Gasto com otimização ${custoOtimizado.toLocaleString("pt-BR", {style: "currency",currency: "BRL"})}
+                    
+                <!-- INVESTIMENTO -->
+                Investimento no sistema ${investimento.toLocaleString("pt-BR", {style: "currency",currency: "BRL"})}/mês
+                    
+                <!-- ECONOMIA -->
+                Economia mensal ${economia.toLocaleString("pt-BR", {style: "currency",currency: "BRL"})} e
+                ${economiaAno.toLocaleString("pt-BR", {style: "currency",currency: "BRL"})} por ano
+                    
+                <!-- LUCRO FINAL -->
+                Resultado mensal ${lucroMensal.toLocaleString("pt-BR", {style: "currency",currency: "BRL"})} <br>
+
+                ROI: ${roi.toFixed(1)}% • Payback: ${payback.toFixed(1)} meses
+                  
+                <!-- FRASE FINAL -->
+                Você reduz custos, paga o sistema e ainda gera lucro.
+               
+            `;
     }
 </script>
