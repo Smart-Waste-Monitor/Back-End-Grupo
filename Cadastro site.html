@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro Hospitalar</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* azul bem claro */
+        }
+
+        .container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        input {
+            width: 90%;
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+        }
+
+                #mensagem {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Cadastro</h2>
+
+        <input type="text" id="nome_completo" placeholder="Nome Completo"><br>
+        <input type="text" id="senha" placeholder="Senha"><br>
+        <input type="text" id="confirmar_senha" placeholder="Confirmar Senha"><br>
+        <input type="text" id="codigo_hospital" placeholder="Código do Hospital"><br>
+        <input type="tel"  id="telefone" placeholder="Telefone"><br>
+        <input type="email" id="email" placeholder="Email"><br>
+
+        <button onclick="cadastrar()">Cadastrar</button>
+
+        <div id="div_mensagem"></div>
+    </div>
+
+</body>
+</html>
+
+<script>
+function cadastrar(){
+    let senhaa = senha.value;
+    let confirmar = confirmar_senha.value;
+    let emaill = email.value;
+
+    let msg = "";
+
+    if (senhaa !== confirmar) {
+        msg = "As senhas não coincidem!";
+    } else if (!emaill.includes("@")) {
+        msg = "O email deve conter '@'!";
+    } else {
+        msg = "Cadastro realizado com sucesso!";
+    }
+
+    div_mensagem.innerHTML = msg;
+}
+</script>
