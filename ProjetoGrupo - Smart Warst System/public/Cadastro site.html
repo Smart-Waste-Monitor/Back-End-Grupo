@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro Hospitalar</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/cadastro.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <p class="titulo">Smart Waste Systems</p>
+        </div>
+
+        <div class="links">
+            <a href="#hero-section" class="escolhaLinks">Home</a>
+            <a href="#servicos" class="escolhaLinks">Serviços</a>
+            <a href="#sobre-nos" class="escolhaLinks">Sobre Nós</a>
+            <a href="#fundadores" class="escolhaLinks">Fundadores</a>
+            <a href="#formulario" class="escolhaLinks">Contate-nos</a>
+            <a href="v1calculadora.html" class="escolhaLinks">Calculadora Financeira</a>
+            <a href="#" class="escolhaLinks login">Login</a>
+            <!-- Nesse precisamos do login! Então confie. -->
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Cadastro</h2>
+
+        <input type="text" id="nome_completo" placeholder="Nome Completo"><br>
+        <input type="text" id="senha" placeholder="Senha"><br>
+        <input type="text" id="confirmar_senha" placeholder="Confirmar Senha"><br>
+        <input type="text" id="codigo_hospital" placeholder="Código do Hospital"><br>
+        <input type="tel" id="telefone" placeholder="Telefone"><br>
+        <input type="email" id="email" placeholder="Email"><br>
+
+        <button onclick="cadastrar()">Cadastrar</button>
+
+        <div id="div_mensagem"></div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function cadastrar() {
+        let senhaa = senha.value;
+        let confirmar = confirmar_senha.value;
+        let emaill = email.value;
+
+        let msg = "";
+
+        if (senhaa !== confirmar) {
+            msg = "As senhas não coincidem!";
+        } else if (!emaill.includes("@")) {
+            msg = "O email deve conter '@'!";
+        } else {
+            msg = "Cadastro realizado com sucesso!";
+        }
+
+        div_mensagem.innerHTML = msg;
+    }
+</script>

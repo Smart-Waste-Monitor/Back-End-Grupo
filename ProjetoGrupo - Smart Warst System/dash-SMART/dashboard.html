@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Volumes</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <p class="titulo">Smart Waste Systems</p>
+        </div>
+
+        <div class="links">
+            <a href="#hero-section" class="escolhaLinks">Home</a>
+            <a href="#servicos" class="escolhaLinks">Serviços</a>
+            <a href="#sobre-nos" class="escolhaLinks">Sobre Nós</a>
+            <a href="#fundadores" class="escolhaLinks">Fundadores</a>
+            <a href="#formulario" class="escolhaLinks">Contate-nos</a>
+            <a href="#" class="escolhaLinks login">Login</a>
+            <!-- Nesse precisamos do login! Então confie. -->
+        </div>
+    </header>
+    <h2 id="tituloGeral">Volume Geral de Resíduos</h2>
+    <section class="indicadores">
+
+        <div class="kpi">
+            <span class="kpiTitulo">Biológico</span>
+            <span class="kpiSecundario">Lixeira 2</span>
+            <span class="kpiValor">8%</span>
+        </div>
+
+        <div class="kpi">
+            <span class="kpiTitulo">Químico</span>
+            <span class="kpiSecundario">Lixeira 1</span>
+            <span class="kpiValor">92%</span>
+        </div>
+
+        <div class="kpi">
+            <span class="kpiTitulo">Comum</span>
+            <span class="kpiSecundario">Lixeira 1</span>
+            <span class="kpiValor">54%</span>
+        </div>
+
+        <div class="kpi">
+            <span class="kpiTitulo">Perfurocortantes</span>
+            <span class="kpiSecundario">Lixeira 2</span>
+            <span class="kpiValor">28%</span>
+        </div>
+
+        <div class="kpi booleano">
+            <span class="kpiTitulo">Radioativo</span>
+            <span class="kpiSecundario">Lixeira 1</span>
+            <span class="kpiValor bolean">Sim</span>
+        </div>
+
+    </section>
+    <section class="container">
+
+        <div class="content">
+            <div class="titulo-dash">
+                <h1>Volume Geral nas Últimas 24 horas</h1>
+            </div>
+
+            <div class="grafico">
+                <canvas id="sensorDigital"></canvas>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+</html>
+<script>
+
+    var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
+        type: 'bar',
+        data: {
+            datasets: [{
+                label: 'Lixeira A',
+                borderColor: '#63B1BC',
+                backgroundColor: '#012790'
+            },
+            {
+                label: 'Lixeira B',
+                borderColor: '#63B1BC',
+                backgroundColor: '#111827'
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: '(0-1)'
+                    },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var paginacao = {};
+    var tempo = {};
+
+    function obterDados(grafico, endpoint) {
+        fetch('http://10.18.32.143:3300/sensores/' + endpoint)
+            .then(response => response.json())
+            .then(valores => {
+                if (paginacao[endpoint] == null) {
+                    paginacao[endpoint] = 0;
+                }
+                if (tempo[endpoint] == null) {
+                    tempo[endpoint] = 0;
+                }
+
+                var ultimaPaginacao = paginacao[endpoint];
+                paginacao[endpoint] = valores.length;
+                valores = valores.slice(ultimaPaginacao);
+
+                valores.forEach((valor) => {
+                    if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                        grafico.data.labels.shift();
+                        grafico.data.datasets[0].data.shift();
+                    }
+
+                    grafico.data.labels.push(tempo[endpoint]++);
+                    grafico.data.datasets[0].data.push(parseFloat(valor));
+                    grafico.update();
+                });
+            })
+            .catch(error => console.error('Erro ao obter dados:', error));
+    }
+
+    setInterval(() => {
+        ;
+        obterDados(sensorDigital, 'digital');
+    }, 1000);
+
+    let bolean = document.querySelector(".bolean");
+    let booleano = document.querySelector(".booleano")
+    if (bolean.innerHTML == 'Não') {
+        booleano.classList.remove("red");
+        booleano.classList.add("green");
+    } else {
+        booleano.classList.add("red");
+        booleano.classList.remove("green");
+    }
+
+</script>

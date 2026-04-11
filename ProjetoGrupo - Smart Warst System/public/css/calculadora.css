@@ -1,0 +1,108 @@
+    body {
+        font-family: 'Inter', 'Segoe UI', sans-serif;
+        background: #f8fafc;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tituloCalc {
+        display: flex;
+        justify-content: center;
+        color: #111827;
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 50px;
+        margin-top: -20px;
+        padding: 20px;
+        flex-wrap: wrap;
+    }
+
+    .container,
+    .resultado-card {
+        background: white;
+        padding: 30px;
+        width: 420px;
+        border-radius: 14px;
+        border: 1px solid #e5e7eb;
+        transition: all 0.2s ease;
+    }
+
+    .container:hover,
+    .resultado-card:hover {
+        border-color: #d1d5db;
+        transform: translateY(-2px);
+    }
+
+    h2 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 20px;
+    }
+
+    .plano {
+        background: #f1f5f9;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        margin-bottom: 20px;
+        color: #374151;
+    }
+
+    .campo {
+        margin-bottom: 15px;
+    }
+
+    input {
+        width: 93%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #d1d5db;
+        font-size: 14px;
+        transition: all 0.2s;
+        background: #f9fafb;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #111827;
+        background: white;
+    }
+
+    button {
+        margin-top: 10px;
+        padding: 14px;
+        width: 100%;
+        background: #111827;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    button:hover {
+        background: #283344;
+    }
+
+    .resultado {
+        font-size: 14px;
+        color: #374151;
+        line-height: 1.6;
+    }
+
+    .destaque {
+        color: #16a34a;
+        font-weight: 600;
+    }
+
+    .alerta {
+        color: #dc2626;
+        font-weight: 600;
+    }
