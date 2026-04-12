@@ -1,16 +1,182 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro Hospitalar</title>
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/cadastro.css">
+    <script src="./js/sessao.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+ <style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+  body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background: #f8fafc;
+  }
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding: 8px 40px;
+  background:white;
+  border-bottom:1px solid #e5e7eb;
+}
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo img{
+  height: 50px;
+  width: 50px;
+}
+
+.titulo {   
+  font-size: 18px;
+  font-weight: 700;
+  color:#111827;
+}
+
+.links{
+  display:flex;
+  align-items: center;
+  font-weight: 600;
+  color: #374151;
+  gap: 20px;
+}
+
+.escolhaLinks{
+  text-decoration:none;
+  color:#111827;
+  font-size:14px;
+  transition:0.2s;
+}
+
+.escolhaLinks:hover{
+  color:#012790
+}
+
+.login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  font-weight: 700;
+  background:#111827;
+  color:white;
+  padding:8px 14px;
+  border-radius:8px;
+}
+
+.login:hover{
+  color: white;
+  background:#012790;
+}
+
+.card {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.forms {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 32px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+}
+
+.forms h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+.form input {
+  width: 100%;
+  height: 42px;
+  margin-bottom: 14px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.form input:hover {
+  transform: translateY(-2px);
+}
+
+.form button {
+  width: 100%;
+  height: 42px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  color: #f2efef;
+  background-color: rgb(38, 74, 233);
+  transition: all 0.3s ease;
+}
+
+.form button:hover {
+  background-color: rgb(27, 46, 134);
+  transform: translateY(-2px);
+}
+
+
+.alerta_erro{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card_erro {
+  display: none;
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  color: #ffffff;
+  width: 260px;
+  position: fixed; 
+  border-radius: 10px;
+  border: solid 1px black;
+  padding: 16px 18px;
+  margin-right: 10%; 
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.card_erro span {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  display: block;
+  text-align: center;
+}
+
+#fechar {
+  float: right;
+  font-size: 22px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+ </style>
 </head>
 
-<body>
+<body onload="listar()">
     <header>
         <div class="logo">
+            <img src="imgs/logo.png" alt="Logo da Smart Waste Systems" height="100" width="100">
+            <!-- Por que alt? E isso em várias imagens... Leitor de tela em resumo! -->
             <p class="titulo">Smart Waste Systems</p>
         </div>
 
@@ -26,41 +192,195 @@
         </div>
     </header>
 
-    <div class="container">
-        <h2>Cadastro</h2>
-
-        <input type="text" id="nome_completo" placeholder="Nome Completo"><br>
-        <input type="text" id="senha" placeholder="Senha"><br>
-        <input type="text" id="confirmar_senha" placeholder="Confirmar Senha"><br>
-        <input type="text" id="codigo_hospital" placeholder="Código do Hospital"><br>
-        <input type="tel" id="telefone" placeholder="Telefone"><br>
-        <input type="email" id="email" placeholder="Email"><br>
-
-        <button onclick="cadastrar()">Cadastrar</button>
-
-        <div id="div_mensagem"></div>
+   <div class="alerta_erro"> <!--Card de erro modal(ou seja esta oculto até ser chamado)-->
+      <div class="card_erro" id="cardErro">
+        <span id="fechar" onclick="sumirMensagem()">&times;</span><!--X para fechar o card de erro-->
+        <span id="mensagem_erro"></span><!--Mensagem de erro que muda de acordo com os IFs do script-->
+      </div>
     </div>
 
-</body>
+    <section class="card">  <!--Card principal da tela-->
+        <div class="forms">
+            <form id="login-form" class="form"> <!--Tag de inicio do formulario do cadastro-->
+                <h2>Cadastro</h2>
+                <input type="text" id="nome_completo" placeholder="Nome Completo">
+                <input type="password" id="senha_imp" placeholder="Senha">
+                <input type="password" id="confirmar_senha" placeholder="Confirmar Senha">
+                <input type="tel"  id="telefone_imp" placeholder="Telefone">
+                <input type="email" id="email" placeholder="Email">
+                <input type="text" id="Cod_hospital_imp" placeholder="Código do hospital">
 
+                <button type="button" onclick="cadastrar()">Cadastrar</button><!--botao de envio do cadastro-->
+            </form>
+        </div>
+    </section> 
+ </body>
 </html>
 
+
 <script>
-    function cadastrar() {
-        let senhaa = senha.value;
-        let confirmar = confirmar_senha.value;
-        let emaill = email.value;
+  // Array para armazenar empresas cadastradas para validação de código de ativação 
+  let listaEmpresasCadastradas = [];
 
-        let msg = "";
+  function cadastrar() {
+    // aguardar();
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_completo.value;
+    var senhaVar = senha_imp.value;
+    var confirmacaoSenhaVar = confirmar_senha.value;
+    var telefoneVar = telefone_imp.value;
+    var emailVar = email.value;
+    var cod_hospVar = Cod_hospital_imp.value;
 
-        if (senhaa !== confirmar) {
-            msg = "As senhas não coincidem!";
-        } else if (!emaill.includes("@")) {
-            msg = "O email deve conter '@'!";
-        } else {
-            msg = "Cadastro realizado com sucesso!";
-        }
 
-        div_mensagem.innerHTML = msg;
+    var idEmpresaVincular;
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      telefoneVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      cod_hospVar == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+      finalizarAguardar();
+      return false;
+
+      //Verificando se o nome é maior ou igual a um caractere
+    } else if (nomeVar.length <= 1) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Nome com um ou menos caracteres)";
+      finalizarAguardar();
+      return false;
+
+      //Verificando se há algum @ no email
+    } else if (emailVar.indexOf('@') == -1) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Não contém arroba)";
+      finalizarAguardar();
+      return false;
+
+      //Verificando se há algum . no email
+    } else if (emailVar.indexOf('.') == -1) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Não contém .)";
+      finalizarAguardar();
+      return false;
+
+      //Verificando se a senha é maior ou igual a 6 caracteres 
+    } else if (senhaVar.length <= 6) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Senha com 6 ou menos digitos)";
+      finalizarAguardar();
+      return false;
+
+      //Verificando se a senha e a confirmacão são iguais
+    } else if (senhaVar != confirmacaoSenhaVar) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Não é igual a senha)";
+      finalizarAguardar();
+      return false;
+
+    }else {
+      // fecha em 5 segundos se não tiver erros
+     setTimeout(sumirMensagem, 5000);
     }
+
+    //for concertado para rodar todas as "empresas"
+    let codigoValido = false;
+
+for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+  if (listaEmpresasCadastradas[i].codigo_ativacao == cod_hospVar) {
+    idEmpresaVincular = listaEmpresasCadastradas[i].id;
+    codigoValido = true;
+    break;
+  }
+}
+
+if (!codigoValido) {
+  cardErro.style.display = "block";
+  mensagem_erro.innerHTML = "Código do hospital inválido.";
+  return false;
+}
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        telefoneServer: telefoneVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        cod_hospServer: cod_hospVar,
+        
+        idEmpresaVincularServer: idEmpresaVincular
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  // Listando empresas cadastradas 
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresasCadastradas.push(empresa);
+
+            console.log("listaEmpresasCadastradas")
+            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  //função para remover os modais
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
 </script>
