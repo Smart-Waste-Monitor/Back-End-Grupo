@@ -17,7 +17,8 @@
 .carousel {
     width: 100%;
     height: 100%;
-    position: relative; /* necessário pra slides absolutos justamente pelo indicador sair!*/
+    position: relative;
+    /* necessário pra slides absolutos justamente pelo indicador sair!*/
 }
 
 /* Container das imagens */
@@ -28,12 +29,16 @@
 
 /* Cada imagem fica sobreposta, ocupando todo o container certinho */
 .slide {
-    position: absolute; /* sobrepor a imagem anterior, por mais que ela suma, tem que fazer isso */
+    position: absolute;
+    /* sobrepor a imagem anterior, por mais que ela suma, tem que fazer isso */
     width: 100%;
     height: 100%;
-    object-fit: cover; /* imagem preenche sem distorcer */
-    opacity: 0; /* invisível por padrão */
-    transition: opacity 1s ease; /* fade suave como transição linda */
+    object-fit: cover;
+    /* imagem preenche sem distorcer */
+    opacity: 0;
+    /* invisível por padrão */
+    transition: opacity 1s ease;
+    /* fade suave como transição linda */
 }
 
 /* Como o padrão é opacity: 0; Tenho que transformar a opacity em 1 */
@@ -43,24 +48,59 @@
 
 /* Container das bolinhas (indicadores) */
 .indicador {
-    position: absolute; /*Para conseguir usar o bottom*/
-    bottom: 1px; /* manda ficar na parte de baixo do carousel */
+    position: absolute;
+    /*Para conseguir usar o bottom*/
+    bottom: 0px;
+    /* manda ficar na parte de baixo do carousel */
     width: 100%;
-    text-align: center; /* centraliza!!!!!!!!!! */
+    text-align: center;
+    /* centraliza!!!!!!!!!! */
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding: 12px;
+    background: white;
+}
+
+/* HERO */
+.carousel {
+    width: 100%;
+    max-width: 1200px;
+    margin: 30px auto;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+.slide {
+    width: 100%;
+    display: none;
+}
+
+.slide.active {
+    display: block;
 }
 
 /* Cada bolinha do indicador */
 .indica {
-    display: inline-block; /*Posição*/
+    display: inline-block;
+    /*Posição*/
     width: 10px;
-    height: 10px; /* Por que esse dois? Para fazer "surgir", se não fica invisivel sabe, no fim ainda é um span*/
-    margin: 7.5px; /* espaçamento entre Elas */
-    background-color: #bbb; /* cinza padrão para não dar tantoooooooo destaque */
-    border-radius: 50%; /* deixa redonda bonitinha */
-    transition: background 0.3s; /* muda cor suavemente */
+    height: 10px;
+    /* Por que esse dois? Para fazer "surgir", se não fica invisivel sabe, no fim ainda é um span*/
+    margin: 7.5px;
+    /* espaçamento entre Elas */
+    background-color: #6c6c6c;
+    /* cinza padrão para não dar tantoooooooo destaque */
+    border-radius: 50%;
+    /* deixa redonda bonitinha */
+    transition: background 0.3s;
+    /* muda cor suavemente */
 }
 
 /* Ativou = branco */
 .indica.active {
-    background-color: #fff;
+    background-color: #bbb;
+    /* cinza padrão para não dar tantoooooooo destaque */
+
 }
