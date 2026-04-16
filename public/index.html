@@ -14,8 +14,8 @@
 <body>
     <!-- NAV!! Em resumo, nosso topo e tals -->
     <nav>
-        <div class="logo">
-            <img src="imgs/logo.png" alt="Logo da Smart Waste Systems" height="100" width="100">
+        <div></div>
+            <img src="imgs/logo.png" alt="Logo da Smart Waste Systems" class="logo">
             <!-- Por que alt? E isso em várias imagens... Leitor de tela em resumo! -->
         </div>
 
@@ -27,10 +27,9 @@
             <a href="index.html" class="escolhaLinks">Home</a>
             <a href="#servicos" class="escolhaLinks">Serviços</a>
             <a href="#sobre-nos" class="escolhaLinks">Sobre Nós</a>
-            <a href="#fundadores" class="escolhaLinks">Fundadores</a>
             <a href="#formulario" class="escolhaLinks">Contate-nos</a>
             <a href="v1calculadora.html" class="escolhaLinks">Calculadora Financeira</a>
-            <a href="login.html" class="escolhaLinks login">Login</a> <!-- Nesse precisamos do login! Então confie. -->
+            <a href="login.html" class="escolhaLinks login">Login</a>
         </div>
     </nav>
 
@@ -38,10 +37,10 @@
     <header id="hero-section">
         <div class="carousel">
             <div class="slides">
-                <img src="https://dummyimage.com/1200x300/1e1e2f/ffffff&text=Slide+1" class="slide active"
+                <img src="./imgs/CaçambaComSensor.png" class="slide active"
                     alt="Slide 1">
-                <img src="https://dummyimage.com/1200x300/ff4b2b/ffffff&text=Slide+2" class="slide" alt="Slide 2">
-                <img src="https://dummyimage.com/1200x300/00c9a7/ffffff&text=Slide+3" class="slide" alt="Slide 3">
+                <img src="./imgs/CoordenadorAcessando.png" class="slide" alt="Slide 2">
+                <img src="./imgs/InstalaçãoSensor.png" class="slide" alt="Slide 3">
             </div>
 
             <div class="indicador">
@@ -54,40 +53,87 @@
 
     <!-- SERVIÇOS -->
     <section id="servicos" class="servicos">
-        <!-- Por que section invés de div? Além de facilitar leitura, ajuda leitor de tela! Tem que ser acessível (e vamos ser sinceros, muito mais bonito!) -->
-        <h2 class="tituloServico">Serviços Prestados</h2>
-
-        <div class="servicoMostrar">
-            Card 1 | Card 2 | Card 3
-            <!-- Ainda vai colocar bonitinho, tem que ver-->
+        <div class="servicos-titulos">
+            <p class="servicos-titulo">Serviços Fornecidos</p>
+            <p class="servicos-texto">Conheça os serviços fornecidos pela nossa empresa, que iram facilitar o dia a dia do seu negócio.</p>
         </div>
+
+        <div class="servicos-cards">
+            <div class="servicos-card">
+                <p class="servicos-curso">Instalação</p>
+                <p class="servicos-descricao">Fornecemos toda instalação dos nossos sensores e em conjunto a instação do sistema de controle.</p>
+            </div>
+            <div class="servicos-card">
+                <p class="servicos-curso">Controle de Residuos</p>
+                <p class="servicos-descricao">Nosso sistema faz o controle de volume de residuos para que não tenha coleta desnecessária. E redusa os gastos com coletas.</p>
+            </div>
+            <div class="servicos-card">
+                <p class="servicos-curso">Manutenção</p>
+                <p class="servicos-descricao">Junto ao nosso serviço vendemos um pacote de manutenção de sistemas e sensores.</p>
+            </div>
     </section>
 
     <!-- Vamos tirar isso no futuro, só por enquanto -->
     <br><br>
 
     <!-- SOBRE NÓS!! -->
-    <section id="sobre-nos" class="sobre-nos">
-        <h2 class="tituloSobre">Sobre Nós</h2>
+    <section id="sobre-nos" class="intro-site">
+        <div class="intro">
+            <h1 class="conhecer-titulo">Conheça mais a <span>Smart Waste Systems</span><br>a melhor empresa de <span>Controle de Volume</span></h1>
+            <p class="conhecer-texto">A Smart Waste Systems tem como objetivo modernizar o gerenciamento de resíduos por meio de tecnologia inteligente. Utilizando sensores de monitoramento, nosso sistema permite controlar o volume de resíduos com precisão, reduzindo custos e evitando coletas desnecessárias.<br><br>
 
-        <div class="sobreMostrar">
-            <div class="imgSobre">
-                <img src="" alt="Imagem sobre a empresa">
-            </div>
-
-            <div class="textoSobre">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel interdum turpis. Aliquam erat
-                volutpat. Etiam facilisis pellentesque justo. Maecenas imperdiet, arcu in suscipit scelerisque, nisi
-                diam feugiat dui, vel pretium nulla quam sit amet turpis. Vestibulum ante ipsum primis in faucibus orci
-                luctus et ultrices posuere cubilia curae; Cras ut velit pellentesque, commodo est vitae, aliquet sem.
-                Etiam suscipit accumsan diam, quis maximus orci dignissim eu.
+            Buscamos oferecer soluções eficientes, sustentáveis e adaptáveis a cada cliente, contribuindo para um processo mais organizado e ambientalmente responsável. 
+            Mais do que um serviço, somos parceiros na otimização e inovação do seu negócio.</p>
+            <div class="button-intro">
+                <a class="conhecer-projeto" href="login.html">Acessar sua Conta ⭢</a>
             </div>
         </div>
+        <img src="./imgs/AlertaAdministração.png" alt="" class="conhecer-img">
     </section>
 
     <!-- FUNDADORES!! -->
     <section id="fundadores" class="fundadores">
-        <!-- Futuramente cards dos fundadores -->
+        <h2 class="tituloFundadores">Nossos Fundadores</h2>
+
+        <div class="fundadores-container">
+
+            <div class="fundador-card">
+                <img src="imgs/fundadores/heloisa.jpg" alt="Heloisa Almeida">
+                <h3>Heloisa Almeida</h3>
+                <p>Co-fundadora</p>
+            </div>
+
+            <div class="fundador-card">
+                <img src="imgs/fundadores/julia.jpg" alt="Julia Ayumi">
+                <h3>Julia Ayumi</h3>
+                <p>Co-fundadora</p>
+            </div>
+
+            <div class="fundador-card">
+                <img src="imgs/fundadores/mateus.jpg" alt="Mateus Maceu">
+                <h3>Mateus Maceu</h3>
+                <p>Co-fundador</p>
+            </div>
+
+            <div class="fundador-card">
+                <img src="imgs/fundadores/guilherme.jpg" alt="Guilherme Souza">
+                <h3>Guilherme Souza</h3>
+                <p>Co-fundador</p>
+            </div><br>
+
+            <div class="fundador-card">
+                <img src="imgs/fundadores/kristhian.jpg" alt="Kristhian">
+                <h3>Kristhian</h3>
+                <p>Co-fundador</p>
+            </div>
+
+            <div class="fundador-card">
+                <img src="imgs/fundadores/leticia.jpg" alt="Leticia Alves">
+                <h3>Leticia Alves</h3>
+                <p>Co-fundadora</p>
+            </div>
+
+        </div>
     </section>
 
     <!-- FORMULÁRIO -->

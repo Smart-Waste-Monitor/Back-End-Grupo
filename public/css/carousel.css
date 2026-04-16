@@ -10,7 +10,7 @@
 /* Hero section: ocupa 100% da largura, altura fixa, e corta o que ultrapassar dessa altura tlgd? */
 #hero-section {
     width: 100%;
-    height: 500px;
+    height: 440px;
 }
 
 /* Container do carousel: ocupa todo o hero, se não por exemplo, o indicador sai */
