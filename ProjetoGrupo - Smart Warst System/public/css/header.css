@@ -18,6 +18,8 @@ nav{
 .links{
     display:flex;
     gap:20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .escolhaLinks{
@@ -25,6 +27,8 @@ nav{
     color:#374151;
     font-size:14px;
     transition:0.2s;
+    justify-content: center;
+    align-items: center;
 }
 
 .escolhaLinks:hover{
@@ -41,3 +45,4 @@ nav{
 .login:hover{
     background:#283344;
 }
+

@@ -1,225 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Hospitalar</title>
-   <style>
-    * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-  body {
-  font-family: 'Inter', 'Segoe UI', sans-serif;
-  background: #f8fafc;
-  }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Hospitalar</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
 
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding: 8px 40px;
-  background:white;
-  border-bottom:1px solid #e5e7eb;
-}
-.logo{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.logo img{
-  height: 50px;
-  width: 50px;
-}
-
-.titulo {   
-  font-size: 18px;
-  font-weight: 700;
-  color:#111827;
-}
-
-.links{
-  display:flex;
-  align-items: center;
-  font-weight: 600;
-  color: #374151;
-  gap: 20px;
-}
-
-.escolhaLinks{
-  text-decoration:none;
-  color:#111827;
-  font-size:14px;
-  transition:0.2s;
-}
-
-.escolhaLinks:hover{
-  color:#012790
-}
-
-.login{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80px;
-  font-weight: 700;
-  background:#111827;
-  color:white;
-  padding:8px 14px;
-  border-radius:8px;
-}
-
-.login:hover{
-  color: white;
-  background:#012790;
-}
-
-.card {
-  height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.forms {
-  background-color: #ffffff;
-  border-radius: 14px;
-  padding: 32px;
-  width: 100%;
-  max-width: 420px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
-}
-
-.forms h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #111;
-}
-
-.form input {
-  width: 100%;
-  height: 42px;
-  margin-bottom: 14px;
-  padding: 0 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-}
-
-.form input:hover {
-  transform: translateY(-2px);
-}
-
-.form button {
-  width: 100%;
-  height: 42px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border: none;
-  font-size: 1em;
-  cursor: pointer;
-  color: #f2efef;
-  background-color: rgb(38, 74, 233);
-  transition: all 0.3s ease;
-}
-
-.form button:hover {
-  background-color: rgb(27, 46, 134);
-  transform: translateY(-2px);
-}
-
-
-.alerta_erro{
-  display: flex;
-  justify-content: flex-end;
-}
-
-.card_erro {
-  display: none;
-  background: linear-gradient(135deg, #dc2626, #b91c1c);
-  color: #ffffff;
-  width: 260px;
-  position: fixed; 
-  border-radius: 10px;
-  border: solid 1px black;
-  padding: 16px 18px;
-  margin-right: 10%; 
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.card_erro span {
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.4;
-  display: block;
-  text-align: center;
-}
-
-#fechar {
-  float: right;
-  font-size: 22px;
-  cursor: pointer;
-  margin-left: 5px;
-}
-
-</style>
-  </head>
-  <body>
-       <header>
-        <div class="logo">
-            <img src="imgs/logo.png" alt="Logo da Smart Waste Systems" height="100" width="100">
-            <p class="titulo">Smart Waste Systems</p>
-        </div>
-
-        <div class="links">
-            <a href="#hero-section" class="escolhaLinks">Home</a>
-            <a href="#servicos" class="escolhaLinks">Serviços</a>
-            <a href="#sobre-nos" class="escolhaLinks">Sobre Nós</a>
-            <a href="#fundadores" class="escolhaLinks">Fundadores</a>
-            <a href="#formulario" class="escolhaLinks">Contate-nos</a>
-            <a href="#" class="escolhaLinks login">Login</a>
-        </div>
-    </header>
-
-    <div class="alerta_erro"> <!--Card de erro modal(ou seja esta oculto até ser chamado)-->
-      <div class="card_erro" id="cardErro">
-        <span id="fechar" onclick="sumirMensagem()">&times;</span><!--X para fechar o card de erro-->
-        <span id="mensagem_erro"></span><!--Mensagem de erro que muda de acordo com os IFs do script-->
-      </div>
+<body>
+  <nav>
+    <div class="logo">
+      <img src="imgs/logo.png" alt="Logo da Smart Waste Systems" height="100" width="100">
+      <!-- Por que alt? E isso em várias imagens... Leitor de tela em resumo! -->
     </div>
 
+    <div class="titulo">
+      <p>Smart Waste Systems</p>
+    </div>
 
-  <section class="card">  
-      <div class="forms">
-        <form id="login-form" class="form">
-            <h2>Login</h2>
-            <input
-              type="email"
-              name="impemail"
-              id="impemail"
-              placeholder="Email"
-              autocomplete="email"   
-            />
+    <div class="links">
+      <a href="index.html" class="escolhaLinks">Home</a>
+      <a href="#servicos" class="escolhaLinks">Serviços</a>
+      <a href="#sobre-nos" class="escolhaLinks">Sobre Nós</a>
+      <a href="#fundadores" class="escolhaLinks">Fundadores</a>
+      <a href="#formulario" class="escolhaLinks">Contate-nos</a>
+      <a href="v1calculadora.html" class="escolhaLinks">Calculadora Financeira</a>
+      <a href="login.html" class="escolhaLinks login">Login</a>
+      <!-- Nesse precisamos do login! Então confie. -->
+    </div>
+  </nav>
 
-            <input
-              type="password"
-              name="impsenha"
-              id="impsenha"
-              placeholder="Senha"
-              autocomplete="current-password"
-            />
-            <button type="button" id="btdlogin" onclick="entrar()">Entrar</button>
-        </form>
+  <div class="alerta_erro"> <!--Card de erro modal(ou seja esta oculto até ser chamado)-->
+    <div class="card_erro" id="cardErro">
+      <span id="fechar" onclick="sumirMensagem()">&times;</span><!--X para fechar o card de erro-->
+      <span id="mensagem_erro"></span><!--Mensagem de erro que muda de acordo com os IFs do script-->
+    </div>
+  </div>
+
+
+  <section class="card">
+    <div class="forms">
+      <form id="login-form" class="form">
+        <h2>Login</h2>
+        <input type="email" name="impemail" id="impemail" placeholder="Email" autocomplete="email" />
+
+        <input type="password" name="impsenha" id="impsenha" placeholder="Senha" autocomplete="current-password" />
+        <button type="button" id="btdlogin" onclick="entrar()">Entrar</button>
+      </form>
     </div>
   </section>
-  </body>
+</body>
+
 </html>
 
 <script>
-    // COLOCAR O CODIGO DA API
+  // COLOCAR O CODIGO DA API
 </script>
