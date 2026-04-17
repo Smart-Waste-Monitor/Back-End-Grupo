@@ -54,6 +54,18 @@
       transform: translateY(-2px);
     }
 
+    .sem-cadastro{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+      color: #111;
+      font-size: 14px;
+      a{
+        color: #1d4ed8;
+        font-weight: 600;
+      }
+    }
 
     .alerta_erro {
       display: flex;

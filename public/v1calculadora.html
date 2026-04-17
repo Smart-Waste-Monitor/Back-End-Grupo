@@ -22,12 +22,12 @@
 
         <div class="links">
             <a href="index.html" class="escolhaLinks">Home</a>
-            <a href="v1calculadora.html" class="escolhaLinks">Calculadora Financeira</a>
+            <a href="v1calculadora.html" class="escolhaLinks">Calculadora de Retorno</a>
             <a href="login.html" class="escolhaLinks login">Login</a> 
         </div>
     </nav>
     <div class="tituloCalc">
-        <h1>Por que comprar o Smart Waste Monitor</h1>
+        <h1>Por que comprar o Smart Waste Monitor?</h1>
     </div>
 
     <div class="wrapper">
@@ -93,7 +93,7 @@
             <div style="display:flex; flex-direction:column; gap:10px;">
                 <!-- GASTO ATUAL -->
                 <div style="padding:10px; border:1px solid #e5e7eb; border-radius:10px;">
-                    <div style="font-size:13px; color:#6b7280;">Gasto atual mensal</div>
+                    <div style="font-size:13px; color:#6b7280;">Gasto atual mensal <span>sem</span> o nosso sistema</div>
                     <div style="font-size:26px; font-weight:600; color:#dc2626;">
                         ${custoAtual.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
                     </div>
@@ -101,20 +101,11 @@
 
                 <!-- GASTO OTIMIZADO -->
                 <div style="padding:10px; border:1px solid #e5e7eb; border-radius:10px;">
-                    <div style="font-size:13px; color:#6b7280;">Gasto com otimização</div>
+                    <div style="font-size:13px; color:#6b7280;">Gasto com implementação do sistema Mensal</div>
                     <div style="font-size:26px; font-weight:600; color:#111827;">
                         ${custoOtimizado.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
                     </div>
                 </div>
-
-                <!-- INVESTIMENTO -->
-                <div style="padding:10px; border:1px solid #e5e7eb; border-radius:10px;">
-                    <div style="font-size:13px; color:#6b7280;">Investimento no sistema</div>
-                    <div style="font-size:26px; font-weight:600; color:#111827;">
-                        ${investimento.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}/mês
-                    </div>
-                </div>
-
 
                 <!-- ECONOMIA -->
                 <div style="padding:10px; border-radius:12px; background:#f0fdf4; border:1px solid #bbf7d0;">

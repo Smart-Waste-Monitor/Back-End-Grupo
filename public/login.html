@@ -23,29 +23,30 @@
 
       <div class="links">
           <a href="index.html" class="escolhaLinks">Home</a>
-          <a href="v1calculadora.html" class="escolhaLinks">Calculadora Financeira</a>
+          <a href="v1calculadora.html" class="escolhaLinks">Calculadora de Retorno</a>
           <a href="login.html" class="escolhaLinks login">Login</a> 
       </div>
-  </nav>
-
-  <div class="alerta_erro"> <!--Card de erro modal(ou seja esta oculto até ser chamado)-->
-    <div class="card_erro" id="cardErro">
-      <span id="fechar" onclick="sumirMensagem()">&times;</span><!--X para fechar o card de erro-->
-      <span id="mensagem_erro"></span><!--Mensagem de erro que muda de acordo com os IFs do script-->
+    </nav>
+    
+    <div class="alerta_erro"> <!--Card de erro modal(ou seja esta oculto até ser chamado)-->
+      <div class="card_erro" id="cardErro">
+        <span id="fechar" onclick="sumirMensagem()">&times;</span><!--X para fechar o card de erro-->
+        <span id="mensagem_erro"></span><!--Mensagem de erro que muda de acordo com os IFs do script-->
+      </div>
     </div>
-  </div>
 
-
-  <section class="card">
-    <div class="forms">
-      <form id="login-form" class="form">
-        <h2>Login</h2>
-        <input type="email" name="impemail" id="impemail" placeholder="Email" autocomplete="email" />
-
-        <input type="password" name="impsenha" id="impsenha" placeholder="Senha" autocomplete="current-password" />
-        <button type="button" id="btdlogin" onclick="entrar()">Entrar</button>
-      </form>
-    </div>
+    
+    <section class="card">
+      <div class="forms">
+        <form id="login-form" class="form">
+          <h2>Login</h2>
+          <input type="email" name="impemail" id="impemail" placeholder="Email" autocomplete="email" />
+          
+          <input type="password" name="impsenha" id="impsenha" placeholder="Senha" autocomplete="current-password" />
+          <button type="button" id="btdlogin" onclick="entrar()">Entrar</button>
+        </form>
+        <p class="sem-cadastro">Não tenho cadastro!  <a href="Cadastro site.html">Cadastrar-se</a></p>
+      </div>
   </section>
 </body>
 
