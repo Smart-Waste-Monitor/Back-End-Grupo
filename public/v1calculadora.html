@@ -73,22 +73,35 @@
 </html>
 <script>
     function calcular() {
+        // entradas
         let qtdColetas = Number(coletas.value);
         let valorColeta = Number(custo.value);
         let percentualAtual = Number(usoAtual.value);
 
+        // constantes
         let usoIdeal = 96;
-        let investimento = 2500;
+        let investimento = 2990;
 
+        // base mensal (4 semanas)
         let coletasMensais = qtdColetas * 4;
+
+        // cenário atual (sem sistema)
         let custoAtual = coletasMensais * valorColeta;
-        let coletasOtimizadas = coletasMensais * (percentualAtual / usoIdeal);
+
+        // cenário otimizado
+        let fatorReducao = percentualAtual / usoIdeal;
+        let coletasOtimizadas = coletasMensais * fatorReducao;
         let custoOtimizado = coletasOtimizadas * valorColeta;
-        let economia = custoAtual - custoOtimizado;
-        let economiaAno = economia * 12;
-        let lucroMensal = economia - investimento;
-        let roi = (lucroMensal / investimento) * 100;
-        let payback = investimento / economia;
+
+        // economia
+        let economiaMensal = custoAtual - custoOtimizado;
+        let economiaAnual = economiaMensal * 12;
+        let lucroMensal = economiaMensal - investimento;
+
+        // "payback" - em quanto tempo meu dinheiro investido volta
+        // "roi" - retorno sobre ivestimento
+        let payback = investimento / economiaMensal;
+        let roi = (economiaAnual/ (investimento * 12)) * 100;
 
         resultado.innerHTML = `
             <div style="display:flex; flex-direction:column; gap:10px;">
@@ -112,10 +125,10 @@
                 <div style="padding:10px; border-radius:12px; background:#f0fdf4; border:1px solid #bbf7d0;">
                     <div style="font-size:13px; color:#166534;">Economia mensal</div>
                     <div style="font-size:32px; font-weight:700; color:#16a34a;">
-                        ${economia.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                        ${economiaMensal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
                     </div>
                     <div style="font-size:13px; color:#166534; font-weight: 700;">
-                        ${economiaAno.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })} por ano
+                        ${economiaAnual.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })} por ano
                     </div>
                 </div>
 
