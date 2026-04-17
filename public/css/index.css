@@ -9,7 +9,7 @@ h2 {
 }
 
 /* SERVIÇOS */
-.servicos{
+.servicos {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,31 +17,36 @@ h2 {
     padding: 60px 0px;
     gap: 60px;
 }
-.servicos-titulos{
+
+.servicos-titulos {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 20px;
 }
-.servicos-titulo{
-    color:#111827;
+
+.servicos-titulo {
+    color: #111827;
     font-size: 40px;
     font-weight: 600;
 }
-.servicos-texto{
+
+.servicos-texto {
     color: #111827ab;
     font-size: 20px;
     font-weight: 600;
     margin-top: -20px;
 }
-.servicos-cards{
+
+.servicos-cards {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
-.servicos-card{
+
+.servicos-card {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,64 +59,73 @@ h2 {
     border: 2px solid #bfdbfe;
     color: #17237b;
 }
-.servicos-card:hover{
+
+.servicos-card:hover {
     transform: translateY(-2px);
     color: #1d4ed8;
     background-color: #bfdbfec2;
     transition: 300ms;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
-.servicos-curso{
-    color:#1d4ed8;
+
+.servicos-curso {
+    color: #1d4ed8;
     font-size: 20px;
     font-weight: 600;
     margin-bottom: -6px;
 }
-.servicos-descricao{
+
+.servicos-descricao {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 80%;
     margin-top: 14px;
 }
+
 /* SOBRE */
-.intro-site{
+.intro-site {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 40px 40px;
 }
-.intro{
+
+.intro {
     gap: 20px;
 }
-.conhecer-titulo{
-    color:#111827;
+
+.conhecer-titulo {
+    color: #111827;
     font-size: 36px;
     font-weight: 500;
-    
-    span{
-        color:#202ea7;
+
+    span {
+        color: #202ea7;
     }
 }
-.conhecer-texto{
+
+.conhecer-texto {
     color: #635871;
     font-size: 18px;
     font-weight: 520;
     width: 700px;
     padding: 40px 0px;
 }
-.conhecer-img{
+
+.conhecer-img {
     width: 440px;
     height: 300px;
     border: 2px solid #bfdbfec2;
     border-radius: 20px;
 }
-.button-intro{
+
+.button-intro {
     display: flex;
     gap: 10px;
 }
 
-.conhecer-projeto{
+.conhecer-projeto {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -125,15 +139,17 @@ h2 {
     border: 1px solid #bfdbfe;
     text-decoration: none;
 }
-.conhecer-projeto:hover{
+
+.conhecer-projeto:hover {
     transform: translateY(-2px);
     color: #1d4ed8;
     background-color: #bfdbfec2;
     transition: 300ms;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
+
 /* FUNDADORES */
-.fundadores{
+.fundadores {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -142,21 +158,21 @@ h2 {
     gap: 40px;
 }
 
-.tituloFundadores{
-    color:#111827;
+.tituloFundadores {
+    color: #111827;
     font-size: 40px;
     font-weight: 600;
 }
 
-.fundadores-container{
+.fundadores-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-    max-width: 720px; 
+    max-width: 720px;
 }
 
-.fundador-card{
+.fundador-card {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -171,14 +187,14 @@ h2 {
     transition: 300ms;
 }
 
-.fundador-card:hover{
+.fundador-card:hover {
     transform: translateY(-2px);
     color: #1d4ed8;
     background-color: #bfdbfec2;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.fundador-card img{
+.fundador-card img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -186,16 +202,17 @@ h2 {
     border: 2px solid #bfdbfe;
 }
 
-.fundador-card h3{
+.fundador-card h3 {
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 5px;
 }
 
-.fundador-card p{
+.fundador-card p {
     font-size: 14px;
     color: #1d4ed8;
 }
+
 /* FORMULÁRIO */
 form {
     background: white;
