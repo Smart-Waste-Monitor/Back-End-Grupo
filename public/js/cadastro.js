@@ -5,15 +5,15 @@
     // aguardar();
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_completo.value;
-    var senhaVar = senha_imp.value;
-    var confirmacaoSenhaVar = confirmar_senha.value;
-    var telefoneVar = telefone_imp.value;
-    var emailVar = email.value;
-    var cod_hospVar = Cod_hospital_imp.value;
+    let nomeVar = nome_completo.value;
+    let senhaVar = senha_imp.value;
+    let confirmacaoSenhaVar = confirmar_senha.value;
+    let telefoneVar = telefone_imp.value;
+    let emailVar = email.value;
+    let cod_hospVar = Cod_hospital_imp.value;
 
 
-    var idEmpresaVincular;
+    let idEmpresaVincular;
 
     // Verificando se há algum campo em branco
     if (
