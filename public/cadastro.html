@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro Hospitalar</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/cadastro.css">
+  <link rel="icon" type="image/png" href="./imgs/logo.png">
+</head>
+<body onload="listar()">
+  <nav>
+      <div></div>
+          <img src="imgs/logo.png" alt="Logo da Smart Waste Systems" class="logo">
+          <!-- Por que alt? E isso em várias imagens... Leitor de tela em resumo! -->
+      </div>
+
+      <div class="titulo">
+          <p>Smart Waste Systems</p>
+      </div>
+
+      <div class="links">
+          <a href="index.html" class="escolhaLinks">Home</a>
+          <a href="v1calculadora.html" class="escolhaLinks">Calculadora de Retorno</a>
+          <a href="login.html" class="escolhaLinks login">Login</a> 
+      </div>
+    </nav>
+
+  <div class="alerta_erro"> <!--Card de erro modal(ou seja esta oculto até ser chamado)-->
+    <div class="card_erro" id="cardErro">
+      <span id="fechar" onclick="sumirMensagem()">&times;</span><!--X para fechar o card de erro-->
+      <span id="mensagem_erro"></span><!--Mensagem de erro que muda de acordo com os IFs do script-->
+    </div>
+  </div>
+
+  <section class="card"> <!--Card principal da tela-->
+    <div class="forms">
+      <form id="login-form" class="form"> <!--Tag de inicio do formulario do cadastro-->
+        <h2>Cadastre-se aqui!</h2>
+        <input type="text" id="nome_completo" placeholder="Nome Completo">
+        <input type="password" id="senha_imp" placeholder="Senha">
+        <input type="password" id="confirmar_senha" placeholder="Confirmar Senha">
+        <input type="tel" id="telefone_imp" placeholder="Telefone">
+        <input type="email" id="email" placeholder="Email">
+        <input type="text" id="Cod_hospital_imp" placeholder="Código do hospital">
+
+        <button type="button" onclick="cadastrar()">Cadastrar</button><!--botao de envio do cadastro-->
+      </form>
+        <p class="com-cadastro">Já possuo conta!  <a href="login.html">Fazer Login</a></p>
+    </div>
+  </section>
+</body>
+
+</html>
+<script src="./js/cadastro.js"></script>

@@ -6,6 +6,8 @@ let dots = document.querySelectorAll(".indica");
 // É o índice da primeira imagem (que é 0 né)
 let index = 0;
 
+
+
 // Função que avança para o próximo slide
 function nextSlide() {
     // Aumenta o meu indice
@@ -18,9 +20,14 @@ function nextSlide() {
     // Mostra o slide atual invocando a função
     showSlide(index);
 }
+
+
+
 // Executa a função nextSlide a cada 3 segundos, que é 3000 ms em JS
 // Ai fica parecendo que é automatico
 setInterval(nextSlide, 3000);
+
+
 
 // Função que mostra o slide
 function showSlide(i) {

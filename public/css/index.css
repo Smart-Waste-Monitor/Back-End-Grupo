@@ -86,8 +86,9 @@ h2 {
 /* SOBRE */
 .intro-site {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 50px;
     padding: 40px 40px;
 }
 
