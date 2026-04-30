@@ -23,6 +23,8 @@
       cod_hospVar == ""
     ) {
       cardErro.style.display = "block";
+      cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
+
       mensagem_erro.innerHTML =
         "(Mensagem de erro para todos os campos em branco)";
 
@@ -32,6 +34,7 @@
       //Verificando se o nome é maior ou igual a um caractere
     } else if (nomeVar.length <= 1) {
       cardErro.style.display = "block";
+      cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
       mensagem_erro.innerHTML =
         "(Nome com um ou menos caracteres)";
       finalizarAguardar();
@@ -40,6 +43,7 @@
       //Verificando se há algum @ no email
     } else if (emailVar.indexOf('@') == -1) {
       cardErro.style.display = "block";
+      cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
       mensagem_erro.innerHTML =
         "(Não contém arroba)";
       finalizarAguardar();
@@ -48,6 +52,7 @@
       //Verificando se há algum . no email
     } else if (emailVar.indexOf('.') == -1) {
       cardErro.style.display = "block";
+      cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
       mensagem_erro.innerHTML =
         "(Não contém .)";
       finalizarAguardar();
@@ -56,6 +61,7 @@
       //Verificando se a senha é maior ou igual a 6 caracteres 
     } else if (senhaVar.length <= 6) {
       cardErro.style.display = "block";
+      cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
       mensagem_erro.innerHTML =
         "(Senha com 6 ou menos digitos)";
       finalizarAguardar();
@@ -64,6 +70,7 @@
       //Verificando se a senha e a confirmacão são iguais
     } else if (senhaVar != confirmacaoSenhaVar) {
       cardErro.style.display = "block";
+      cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
       mensagem_erro.innerHTML =
         "(Não é igual a senha)";
       finalizarAguardar();
@@ -87,6 +94,7 @@
 
     if (!codigoValido) {
       cardErro.style.display = "block";
+      cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
       mensagem_erro.innerHTML = "Código do hospital inválido.";
       return false;
     }
@@ -113,7 +121,7 @@
 
         if (resposta.ok) {
           cardErro.style.display = "block";
-
+          cardErro.style.background = "linear-gradient(135deg, #26dc35, #538f09)";
           mensagem_erro.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
