@@ -1,18 +1,21 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Volumes</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../public/css/header.css">
+    <!-- <link rel="stylesheet" href="css/dashboard.css"> -->
+     <link rel="stylesheet" href="../public/css/dashboard.css">
+    <link rel="stylesheet" href="../public/css/style.css">
 </head>
 
 <body>
     <nav>
         <div class="logo">
-            <img src="imgs/logo.png" alt="Logo da Smart Waste Systems" height="100" width="100">
+            <img src="imgs/logo.png" alt="Logo da Smart Waste Systems" height="60" width="auto">
             <!-- Por que alt? E isso em várias imagens... Leitor de tela em resumo! -->
         </div>
 
@@ -28,58 +31,298 @@
             <!-- Nesse precisamos do login! Então confie. -->
         </div>
     </nav>
-    <h2 id="tituloGeral">Volume Geral de Resíduos</h2>
-    <section class="indicadores">
+
+<div class="container">
+    <div class="indicadores">
 
         <div class="kpi">
-            <span class="kpiTitulo">Biológico</span>
-            <span class="kpiSecundario">Lixeira 2</span>
-            <span class="kpiValor">8%</span>
+            <div class="kpiIcone">
+                <img src="../public/imgs/KPI-lixoBiologico.png">
+            </div>
+            <div class="kpiInfo">
+                <span class="kpiTitulo">Biológico</span>
+                <span class="kpiSecundario">Lixeira 2</span>
+                <span class="kpiValor">8%</span>
+            </div>
         </div>
 
         <div class="kpi">
-            <span class="kpiTitulo">Químico</span>
-            <span class="kpiSecundario">Lixeira 1</span>
-            <span class="kpiValor">92%</span>
+            <div class="kpiIcone">
+            <img src="../public/imgs/KPI-lixoQuimico.png">
+            </div>
+            <div class="kpiInfo">
+                <span class="kpiTitulo">Químico</span>
+                <span class="kpiSecundario">Lixeira 1</span>
+                <span class="kpiValor">92%</span>
+            </div>
         </div>
 
         <div class="kpi">
-            <span class="kpiTitulo">Comum</span>
-            <span class="kpiSecundario">Lixeira 1</span>
-            <span class="kpiValor">54%</span>
+            <div class="kpiIcone">
+            <img src="../public/imgs/KPI-lixoComum.png">
+            </div>
+            <div class="kpiInfo">
+                <span class="kpiTitulo">Comum</span>
+                <span class="kpiSecundario">Lixeira 1</span>
+                <span class="kpiValor">54%</span>
+            </div>
         </div>
 
         <div class="kpi">
-            <span class="kpiTitulo">Perfurocortantes</span>
-            <span class="kpiSecundario">Lixeira 2</span>
-            <span class="kpiValor">28%</span>
+            <div class="kpiIcone">
+            <img src="../public/imgs/KPI-lixoPerfurante.png">
+            </div>
+            <div class="kpiInfo">
+                <span class="kpiTitulo">Perfurocortantes</span>
+                <span class="kpiSecundario">Lixeira 2</span>
+                <span class="kpiValor">28%</span>
+            </div>  
         </div>
 
         <div class="kpi booleano">
-            <span class="kpiTitulo">Radioativo</span>
-            <span class="kpiSecundario">Lixeira 1</span>
-            <span class="kpiValor bolean">Não</span>
-        </div>
-
-    </section>
-    <section class="container">
-
-        <div class="content">
-            <div class="titulo-dash">
-                <h1>Volume Geral nas Últimas 24 horas</h1>
+            <div class="kpiIcone">
+                <img src="../public/imgs/KPI-lixoRadioativo.png">
             </div>
-
-            <div class="grafico">
-                <canvas id="sensorDigital"></canvas>
+            <div class="kpiInfo">
+                <span class="kpiTitulo">Radioativo</span>
+                <span class="kpiSecundario">Lixeira 1</span>
+                <span class="kpiValor bolean">Não</span>
             </div>
         </div>
-    </section>
+    </div>
 
+<!-- ============================================================ -->
+<div class="tudo">
+<div class="esquerda">
+    <div class="content">
+        <div class="titulo-dash">
+            <h2>Volume do Sensor Selecionado</h2>
+        </div>
+        <div class="grafico">
+            <canvas id="sensorDigital"></canvas>
+        </div>
+    </div>
+</div>
+
+<div class="direita">
+
+    <div class="lixeiras-container">
+        <div class="fileira01"> 
+            <div class="lixeira-card red" id="l01">
+                <div class="lixeiraIcone">
+                    <img src="../public/imgs/lixoBiologico.png">
+                </div>
+                <div class="lixeiraInfo">
+                    <h3>Lixeira 01</h3>
+                    <p>Volume: 92%</p>
+                </div>
+            </div>
+
+            <div class="lixeira-card" id="l02">
+                <div class="lixeiraIcone">
+                    <img src="../public/imgs/lixoBiologico.png">
+                </div>
+                <div class="lixeiraInfo">
+                    <h3>Lixeira 02</h3>
+                    <p>Volume: 28%</p>
+                </div>
+            </div>
+
+            <div class="lixeira-card red" id="l03">
+                <div class="lixeiraIcone">
+                    <img src="../public/imgs/lixoBiologico.png">
+                </div>
+                <div class="lixeiraInfo">
+                    <h3>Lixeira 03</h3> 
+                    <p>Volume: 75%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="fileira02">
+            <div class="lixeira-card" id="l04">
+                <div class="lixeiraIcone">
+                    <img src="../public/imgs/lixoQuimico.png">
+                </div>
+                <div class="lixeiraInfo">
+                    <h3>Lixeira 04</h3>
+                    <p>Volume: 54%</p>
+                </div>
+            </div>
+
+            <div class="lixeira-card" id="l05">
+                <div class="lixeiraIcone">
+                    <img src="../public/imgs/lixoQuimico.png">
+                </div>
+                <div class="lixeiraInfo">
+                    <h3>Lixeira 05</h3>
+                    <p>Volume: 8%</p>
+                </div>
+            </div>
+
+            <div class="lixeira-card" id="l06">
+                <div class="lixeiraIcone">
+                    <img src="../public/imgs/lixoQuimico.png">
+                </div>
+                <div class="lixeiraInfo">
+                    <h3>Lixeira 06</h3> 
+                    <p>Volume: 38%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="fileira03">
+            <div class="lixeira-card red" id="l07">
+                <div class="lixeiraIcone">
+                    <img src="../public/imgs/lixoPerfurante.png">
+                </div>
+                <div class="lixeiraInfo">
+                    <h3>Lixeira 07</h3>
+                    <p>Volume: 77%</p>
+                </div>
+            </div>
+
+            <div class="lixeira-card" id="l08">
+                <div class="lixeiraIcone">
+                    <img src="../public/imgs/lixoPerfurante.png">
+                </div>
+                <div class="lixeiraInfo">
+                    <h3>Lixeira 08</h3>
+                    <p>Volume: 30%</p>
+                </div>
+            </div>
+
+            <div class="lixeira-card" id="l09">
+                <div class="lixeiraIcone">
+                    <img src="../public/imgs/lixoPerfurante.png">
+                </div>
+                <div class="lixeiraInfo">
+                    <h3>Lixeira 09</h3> 
+                    <p>Volume: 18%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="fileira04">
+            <div class="lixeira-card" id="l10">
+                <div class="lixeiraIcone">
+                    <img src="../public/imgs/lixoComum.png">
+                </div>
+                <div class="lixeiraInfo">
+                    <h3>Lixeira 10</h3>
+                    <p>Volume: 11%</p>
+                </div>
+            </div>
+
+            <div class="lixeira-card" id="l11">
+                <div class="lixeiraIcone">
+                    <img src="../public/imgs/lixoComum.png">
+                </div>
+                <div class="lixeiraInfo">
+                    <h3>Lixeira 11</h3>
+                    <p>Volume: 50%</p>
+                </div>
+            </div>
+
+            <div class="lixeira-card" id="l12">
+                <div class="lixeiraIcone">
+                    <img src="../public/imgs/lixoComum.png">
+                </div>
+                <div class="lixeiraInfo">
+                    <h3>Lixeira 12</h3>
+                    <p>Volume: 42%</p>
+                </div>
+                </div>
+            
+            <div class="fileira05">
+            <div class="lixeira-card" id="l10">
+                <div class="lixeiraIcone">
+                    <img src="../public/imgs/lixoComum.png">
+                </div>
+                <div class="lixeiraInfo">
+                    <h3>Lixeira 10</h3>
+                    <p>Volume: 11%</p>
+                </div>
+            </div>
+
+            <div class="lixeira-card" id="l11">
+                <div class="lixeiraIcone">
+                    <img src="../public/imgs/lixoComum.png">
+                </div>
+                <div class="lixeiraInfo">
+                    <h3>Lixeira 11</h3>
+                    <p>Volume: 50%</p>
+                </div>
+            </div>
+
+            <div class="lixeira-card" id="l12">
+                <div class="lixeiraIcone">
+                    <img src="../public/imgs/lixoComum.png">
+                </div>
+                <div class="lixeiraInfo">
+                    <h3>Lixeira 12</h3>
+                    <p>Volume: 42%</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- ============================================================ -->
 
 </body>
 
 </html>
 <script>
+// let l01 = document.getElementById("l01");
+// let l02 = document.getElementById("l02");
+// let l03 = document.getElementById("l03");
+// let l04 = document.getElementById("l04");
+// let l05 = document.getElementById("l05");
+// let l06 = document.getElementById("l06");
+// let l07 = document.getElementById("l07");
+// let l08 = document.getElementById("l08");
+// let l09 = document.getElementById("l09");
+// let l10 = document.getElementById("l10");
+// let l11 = document.getElementById("l11");
+// let l12 = document.getElementById("l12");
+
+// if (l01.innerHTML.includes("75%")){
+//     l01.style.background = "#ffcdd2";
+// }
+// if (l02.innerHTML.includes("75%")){
+//     l02.style.background = "#ffcdd2";
+// }
+// if (l03.innerHTML.includes("75%")){
+//     l03.style.background = "red";
+// }
+// if (l04.innerHTML.includes("75%")){
+//     l04.style.background = "#ffcdd2";
+// }
+// if (l05.innerHTML.includes("75%")){
+//     l05.style.background = "#ffcdd2";
+// }
+// if (l06.innerHTML.includes("75%")){
+//     l06.style.background = "#ffcdd2";
+// }
+// if (l07.innerHTML.includes("77%")){
+//     l07.style.background = "red";
+// }
+// if (l08.innerHTML.includes("75%")){
+//     l08.style.background = "#ffcdd2";
+// }
+// if (l09.innerHTML.includes("75%")){
+//     l09.style.background = "#ffcdd2";
+// }
+// if (l10.innerHTML.includes("75%")){
+//     l10.style.background = "#ffcdd2";
+// }
+// if (l11.innerHTML.includes("75%")){
+//     l11.style.background = "#ffcdd2";
+// }
+// if (l12.innerHTML.includes("75%")){
+//     l12.style.background = "#ffcdd2";
+// }
+// ============================================================
 
     var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
         type: 'bar',
@@ -145,12 +388,11 @@
 
     let bolean = document.querySelector(".bolean");
     let booleano = document.querySelector(".booleano")
-    if (bolean.innerHTML == 'Não') {
-        booleano.classList.remove("red");
-        booleano.classList.add("green");
-    } else {
+    if (bolean.innerHTML != 'Não') {
         booleano.classList.add("red");
-        booleano.classList.remove("green");
-    }
+        booleano.classList.add("");
+    } 
 
 </script>
+
+
