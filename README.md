@@ -67,7 +67,7 @@ _O comando acima irá iniciar seu projeto e efetuar os comandos de acordo com a 
     <td>SELECT</td>
   </tr>
   <tr>
-    <td>U</td>
+    <td>U</td>  
     <td>Update</td>
     <td>Atualizar</td>
     <td>PUT</td>

@@ -1,5 +1,5 @@
- // Array para armazenar empresas cadastradas para validação de código de ativação 
-  let listaEmpresasCadastradas = [];
+ // Array para armazenar hospital cadastradas para validação de código de ativação 
+  let listahospitalCadastradas = [];
 
   function cadastrar() {
     // aguardar();
@@ -8,19 +8,17 @@
     let nomeVar = nome_completo.value;
     let senhaVar = senha_imp.value;
     let confirmacaoSenhaVar = confirmar_senha.value;
-    let telefoneVar = telefone_imp.value;
     let emailVar = email.value;
     let cod_hospVar = Cod_hospital_imp.value;
 
 
-    let idEmpresaVincular;
+    let idhospitalVincular;
 
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
-      telefoneVar == "" ||
       confirmacaoSenhaVar == "" ||
       cod_hospVar == ""
     ) {
@@ -76,12 +74,12 @@
       setTimeout(sumirMensagem, 5000);
     }
 
-    //for concertado para rodar todas as "empresas"
+    //for concertado para rodar todas as "hospitais"
     let codigoValido = false;
 
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == cod_hospVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id;
+    for (let i = 0; i < listahospitalCadastradas.length; i++) {
+      if (listahospitalCadastradas[i].codigo_ativacao === cod_hospVar) {
+        idhospitalVincular = listahospitalCadastradas[i].idhospital;
         codigoValido = true;
         break;
       }
@@ -103,12 +101,11 @@
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
-        telefoneServer: telefoneVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
         cod_hospServer: cod_hospVar,
 
-        idEmpresaVincularServer: idEmpresaVincular
+        idhospitalVincularServer: idhospitalVincular
       }),
     })
       .then(function (resposta) {
@@ -138,27 +135,33 @@
     return false;
   }
 
-  // Listando empresas cadastradas 
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
+  // Listando hospitals cadastradas 
+ function listar() {
+  fetch("/hospital/listar", {
+    method: "GET",
+  })
+    .then(function (resposta) {
+      resposta.json().then((hospital) => {
 
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
+        listahospitalCadastradas = [];
+
+        hospital.forEach((hospital) => {
+          listahospitalCadastradas.push(hospital);
+
+          console.log("listahospitalCadastradas");
+          console.log(listahospitalCadastradas[0].codigo_ativacao);
         });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
       });
-  }
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+}
 
   //função para remover os modais
   function sumirMensagem() {
     cardErro.style.display = "none";
   }
+
+  function finalizarAguardar() {
+}
