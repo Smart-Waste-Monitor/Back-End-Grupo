@@ -155,6 +155,19 @@ body {
 .lixeiraInfo p {
   font-size: 12px;
 }
+
+.yellow {
+  background-color: yellow;
+}
+
 .red {
   background-color: red;
+}
+
+.status {
+  justify-content: center;
+}
+
+.kpiSecundario.status {
+  color: #cbcbcb;
 }
