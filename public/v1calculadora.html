@@ -10,12 +10,9 @@
 </head>
 
 <body>
-
     <nav>
-        <div></div>
-            <img src="imgs/logo.png" alt="Logo da Smart Waste Systems" class="logo">
+        <img src="imgs/logo.png" alt="Logo da Smart Waste Systems" class="logo">
             <!-- Por que alt? E isso em várias imagens... Leitor de tela em resumo! -->
-        </div>
 
         <div class="titulo">
             <p>Smart Waste Systems</p>
@@ -27,6 +24,7 @@
             <a href="login.html" class="escolhaLinks login">Login</a> 
         </div>
     </nav>
+
     <div class="tituloCalc">
         <h1>Por que comprar o Smart Waste Monitor?</h1>
     </div>
@@ -73,35 +71,48 @@
 </html>
 <script>
     function calcular() {
-        // entradas
         let qtdColetas = Number(coletas.value);
         let valorColeta = Number(custo.value);
         let percentualAtual = Number(usoAtual.value);
 
-        // constantes
-        let usoIdeal = 96;
-        let investimento = 2990;
+        //até 30% menos de coleta desnecessária
+        let melhoriaMaxima = 0.30; 
+        let investimentoMensal = 2990;
 
-        // base mensal (4 semanas)
+        // cenário atual
         let coletasMensais = qtdColetas * 4;
-
-        // cenário atual (sem sistema)
         let custoAtual = coletasMensais * valorColeta;
 
         // cenário otimizado
-        let fatorReducao = percentualAtual / usoIdeal;
-        let coletasOtimizadas = coletasMensais * fatorReducao;
-        let custoOtimizado = coletasOtimizadas * valorColeta;
+        let desperdicioAtual = (100 - percentualAtual) / 100;
+        let reducaoReal = desperdicioAtual * melhoriaMaxima;
+        let custoOtimizado = custoAtual * (1 - reducaoReal);
+        let custoFinal = custoOtimizado + investimentoMensal;
 
         // economia
-        let economiaMensal = custoAtual - custoOtimizado;
-        let economiaAnual = economiaMensal * 12;
-        let lucroMensal = economiaMensal - investimento;
+        let economiaBruta = custoAtual - custoFinal;
+        let lucroMensal = custoAtual - custoFinal;
+        let lucroAnual = lucroMensal * 12;
 
-        // "payback" - em quanto tempo meu dinheiro investido volta
         // "roi" - retorno sobre ivestimento
-        let payback = investimento / economiaMensal;
-        let roi = (economiaAnual/ (investimento * 12)) * 100;
+        // "payback" - em quanto tempo meu dinheiro investido volta
+        let roi = 0;
+        let payback = 0;
+
+        if (lucroMensal > 0) {
+            roi = (lucroAnual/ (investimentoMensal * 12)) * 100;
+            payback = investimentoMensal / lucroMensal;
+        } else {
+            roi = 0;
+            payback = 0;
+        }
+
+    let textoPayback = "";
+        if(payback < 1) {
+            textoPayback = "menos de 1 mês";
+        } else {
+            textoPayback = `${payback.toFixed(1)} meses`;
+        }
 
         resultado.innerHTML = `
             <div style="display:flex; flex-direction:column; gap:10px;">
@@ -115,9 +126,9 @@
 
                 <!-- GASTO OTIMIZADO -->
                 <div style="padding:10px; border:1px solid #e5e7eb; border-radius:10px;">
-                    <div style="font-size:13px; color:#6b7280;">Gasto com implementação do sistema Mensal</div>
+                    <div style="font-size:13px; color:#6b7280;">Gasto mensal com implementação + sistema</div>
                     <div style="font-size:26px; font-weight:600; color:#111827;">
-                        ${custoOtimizado.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                        ${custoFinal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
                     </div>
                 </div>
 
@@ -125,10 +136,10 @@
                 <div style="padding:10px; border-radius:12px; background:#f0fdf4; border:1px solid #bbf7d0;">
                     <div style="font-size:13px; color:#166534;">Economia mensal</div>
                     <div style="font-size:32px; font-weight:700; color:#16a34a;">
-                        ${economiaMensal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                        ${economiaBruta.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
                     </div>
                     <div style="font-size:13px; color:#166534; font-weight: 700;">
-                        ${economiaAnual.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })} por ano
+                        ${lucroAnual.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })} por ano
                     </div>
                 </div>
 
@@ -137,8 +148,9 @@
                     <div style="font-size:13px; color:#1d4ed8;">Resultado mensal</div>
                     <div style="font-size:30px; font-weight:700; color:#1d4ed8;">
                         ${lucroMensal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                    </div>
                     <div style="font-size:13px; color:#1d4ed8;">
-                        ROI: ${roi.toFixed(1)}% • Payback: ${payback.toFixed(1)} meses
+                        ROI: ${roi.toFixed(1)}% • Payback: ${textoPayback}
                     </div>
                 </div>
 
@@ -147,6 +159,6 @@
                     Você reduz custos, paga o sistema e ainda gera lucro.
                 </div>
             </div>
-            <!-- `;
+            `;
     }
 </script>
