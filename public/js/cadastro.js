@@ -156,7 +156,7 @@
         hospital.forEach((hospital) => {
           listahospitalCadastradas.push(hospital);
 
-          console.log("listahospitalCadastradas");
+          console.log(listahospitalCadastradas);
           console.log(listahospitalCadastradas[0].codigo_ativacao);
         });
       });
