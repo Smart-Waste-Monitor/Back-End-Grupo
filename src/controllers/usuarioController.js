@@ -17,6 +17,7 @@ function autenticar(req, res) {
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+                    //Erro estava aqui, esquecemos da parte de verificar se estava certo, então sempre passava o errado.
                     if (resultadoAutenticar.length == 1) {
                         res.status(200).json(resultadoAutenticar[0]);
                     } else if (resultadoAutenticar.length == 0) {
