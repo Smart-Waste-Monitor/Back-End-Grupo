@@ -38,9 +38,17 @@ function entrar() {
                         nome: json.nome,
                         fk: json.fkHospital
                     }))
+
+                    if(json.email == "bob.suporte@gmail.com"){
+                        setTimeout(function () {
+                            window.location = "./suporte.html";
+                        }, 1000);    
+                    }else{
                     setTimeout(function () {
-                        window.location = "./index.html";
+                        window.location = "./dashboard.html";
                     }, 1000); // apenas para exibir o loading
+                    }
+
 
                 });
 
