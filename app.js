@@ -28,9 +28,8 @@ const chatIA = new GoogleGenAI({ apiKey: process.env.MINHA_CHAVE });
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
-//!var avisosRouter = require("./src/routes/avisos");
-//!var medidasRouter = require("./src/routes/medidas");
 var hospitalRouter = require("./src/routes/hospital");
+var dashRouter = require("./src/routes/dash");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,8 +39,7 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
-//app.use("/avisos", avisosRouter);
-//app.use("/medidas", medidasRouter);
+app.use("/dash", dashRouter);
 app.use("/hospital", hospitalRouter);
 
 

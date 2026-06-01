@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="./imgs/logo.png">
 </head>
+
 <body class="body-dash">
     <nav>
         <div class="logo">
@@ -31,7 +32,7 @@
             <!-- Nesse precisamos do login! Então confie. -->
         </div>
     </nav>
-    
+
     <div class="container">
         <div class="indicadores">
             <div class="kpi red" onclick="modalQuimicos()">
@@ -43,35 +44,35 @@
                     <span class="kpiSecundario status">Quantidade: 2</span>
                 </div>
             </div>
-            
+
             <div class="kpi">
                 <div class="kpiInfo">
                     <span class="kpiTitulo">Lixeiras Cheias</span>
                     <span class="kpiSecundario">Quantidade: 2</span>
                 </div>
             </div>
-            
+
             <div class="kpi">
                 <div class="kpiInfo">
                     <span class="kpiTitulo">Lixeiras Vazias</span>
                     <span class="kpiSecundario">Quantidade: 2</span>
                 </div>
             </div>
-            
+
             <div class="kpi">
                 <div class="kpiInfo">
                     <span class="kpiTitulo">Comum</span>
                     <span class="kpiValor">54%</span>
                 </div>
             </div>
-            
+
             <div class="kpi">
                 <div class="kpiInfo">
                     <span class="kpiTitulo">Horário de Sobrecarga</span>
                     <span class="kpiSecundario">18:20h</span>
                 </div>
             </div>
-            
+
             <div class="kpi booleano">
                 <div class="kpiInfo">
                     <span class="kpiTitulo">Horário de<br> descarte</span>
@@ -80,23 +81,23 @@
             </div>
             <p class="kpi-ajuda">Clique na KPI para mais informações</p>
         </div>
-        
+
         <!-- ============================================================ -->
         <dialog id="minhaModal"></dialog>
-    
+
         <div class="tudo">
             <div class="esquerda">
 
                 <div class="filtro">
                     <p>Filtrar por</p>
-                    
+
                     <div class="selecao">
                         <select name="select_filtro" id="selecao">
                             <option value="0">Selecione uma opção</option>
                             <option value="1">Radioativo</option>
                             <option value="2">Biologico</option>
                             <option value="3">Quimico</option>
-                            <option value="4">Perfurante</option> 
+                            <option value="4">Perfurante</option>
                             <option value="5">Comun</option>
                         </select>
                     </div>
@@ -113,150 +114,20 @@
                     <p class="legenda-critico">De 75% a 100%</p>
                 </div>
                 <div class="filtros">
+                    <button onclick="lixeirasGeraisBusca()">Filtro Normal</button>
                     <button onclick="filtrarAlertas()">Filtrar por Alertas</button>
                     <button onclick="filtrarCriticos()">Filtrar por Criticos</button>
                 </div>
-                <div class="lixeiras-container">
+                <div class="lixeiras-container" id="lixeirasContainer">
 
-                    <div class="fileira01">
-                        <div class="lixeira-card red" id="l01" onclick="clique1()">
-                            <div class="lixeiraIcone">
-                                <img src="imgs/imgPorTipo/lixoBiologico.png">
-                            </div>
-                            <div class="lixeiraInfo">
-                                <h3>Lixeira 01</h3>
-                                <p>Volume: 92%</p>
-                            </div>
-                        </div>
-
-                        <div class="lixeira-card red" id="l02" onclick="clique2()">
-                            <div class="lixeiraIcone">
-                                <img src="imgs/imgPorTipo/lixoBiologico.png">
-                            </div>
-                            <div class="lixeiraInfo">
-                                <h3>Lixeira 02</h3>
-                                <p>Volume: 28%</p>
-                            </div>
-                        </div>
-
-                        <div class="lixeira-card yellow" id="l03" onclick="clique3()">
-                            <div class="lixeiraIcone">
-                                <img src="imgs/imgPorTipo/lixoBiologico.png">
-                            </div>
-                            <div class="lixeiraInfo">
-                                <h3>Lixeira 03</h3>
-                                <p>Volume: 75%</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="fileira02">
-                        <div class="lixeira-card" id="l04">
-                            <div class="lixeiraIcone">
-                                <img src="imgs/imgPorTipo/lixoQuimico.png">
-                            </div>
-                            <div class="lixeiraInfo">
-                                <h3>Lixeira 04</h3>
-                                <p>Volume: 54%</p>
-                            </div>
-                        </div>
-
-                        <div class="lixeira-card yellow" id="l05">
-                            <div class="lixeiraIcone">
-                                <img src="imgs/imgPorTipo/lixoQuimico.png">
-                            </div>
-                            <div class="lixeiraInfo">
-                                <h3>Lixeira 05</h3>
-                                <p>Volume: 8%</p>
-                            </div>
-                        </div>
-
-                        <div class="lixeira-card" id="l06">
-                            <div class="lixeiraIcone">
-                                <img src="imgs/imgPorTipo/lixoQuimico.png">
-                            </div>
-                            <div class="lixeiraInfo">
-                                <h3>Lixeira 06</h3>
-                                <p>Volume: 38%</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="fileira03">
-                        <div class="lixeira-card red" id="l07">
-                            <div class="lixeiraIcone">
-                                <img src="imgs/imgPorTipo/lixoPerfurante.png">
-                            </div>
-                            <div class="lixeiraInfo">
-                                <h3>Lixeira 07</h3>
-                                <p>Volume: 77%</p>
-                            </div>
-                        </div>
-
-                        <div class="lixeira-card" id="l08">
-                            <div class="lixeiraIcone">
-                                <img src="imgs/imgPorTipo/lixoPerfurante.png">
-                            </div>
-                            <div class="lixeiraInfo">
-                                <h3>Lixeira 08</h3>
-                                <p>Volume: 30%</p>
-                            </div>
-                        </div>
-
-                        <div class="lixeira-card" id="l09">
-                            <div class="lixeiraIcone">
-                                <img src="imgs/imgPorTipo/lixoPerfurante.png">
-                            </div>
-                            <div class="lixeiraInfo">
-                                <h3>Lixeira 09</h3>
-                                <p>Volume: 18%</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="fileira04">
-                        <div class="lixeira-card red" id="l07">
-                            <div class="lixeiraIcone">
-                                <img src="imgs/imgPorTipo/lixoPerfurante.png">
-                            </div>
-                            <div class="lixeiraInfo">
-                                <h3>Lixeira 07</h3>
-                                <p>Volume: 77%</p>
-                            </div>
-                        </div>
-
-                        <div class="lixeira-card" id="l08">
-                            <div class="lixeiraIcone">
-                                <img src="imgs/imgPorTipo/lixoPerfurante.png">
-                            </div>
-                            <div class="lixeiraInfo">
-                                <h3>Lixeira 08</h3>
-                                <p>Volume: 30%</p>
-                            </div>
-                        </div>
-
-                        <div class="lixeira-card" id="l09">
-                            <div class="lixeiraIcone">
-                                <img src="imgs/imgPorTipo/lixoPerfurante.png">
-                            </div>
-                            <div class="lixeiraInfo">
-                                <h3>Lixeira 09</h3>
-                                <p>Volume: 18%</p>
-                            </div>
-                        </div>
-                    </div>
-                        
                 </div>
             </div>
-
-        </div>
-    </div>
 </body>
 
 </html>
 <script src="./js/modal.js"></script>
 <script>
-    let labels = ['00h', '01h', '02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', '11h','12h', '13h', '14h', '15h', '16h', '17h', '18h', '19h', '20h', '21h', '22h', '23h'];
+    let labels = ['00h', '01h', '02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h', '16h', '17h', '18h', '19h', '20h', '21h', '22h', '23h'];
 
     let dados = [5, 5, 4, 4, 5, 6, 10, 18, 27, 35, 42, 50, 54, 58, 63, 67, 71, 76, 0, 10, 12, 17, 25, 34];
 
@@ -275,9 +146,9 @@
             scales: {
                 x: { beginAtZero: true },
                 y: {
-                    title: { 
-                        display: true, 
-                        text: '(0%-100%)' 
+                    title: {
+                        display: true,
+                        text: '(0%-100%)'
                     },
                     beginAtZero: true
                 }
@@ -290,33 +161,5 @@
         sensorDigital.data.datasets[0].label = nomeLixeira;
         sensorDigital.update();
     }
-
-    function clique1() {
-        atualizarGrafico(
-            [5, 5, 4, 4, 5, 6, 10, 18, 27, 35, 42, 50, 54, 58, 63, 67, 71, 76, 80, 84, 87, 89, 91, 92],
-            'Lixeira 01'
-        );
-    }
-
-    function clique2() {
-        atualizarGrafico(
-            [3, 6, 5, 7, 8, 9, 12, 15, 18, 20, 22, 24, 25, 26, 27, 27, 27, 27, 27, 27, 27, 27, 27, 28],
-            'Lixeira 02'
-        );
-    }
-
-    function clique3() {
-        atualizarGrafico(
-            [2, 4, 6, 9, 13, 17, 21, 26, 30, 35, 40, 45, 50, 55, 60, 65, 70, 73, 73, 73, 74, 74, 74, 75],
-            'Lixeira 03'
-        );
-    }
-
-    let bolean = document.querySelector(".bolean");
-    let booleano = document.querySelector(".booleano")
-    if (bolean.innerHTML != 'Não') {
-        booleano.classList.add("red");
-        booleano.classList.add("");
-    }
-
 </script>
+<script src="./js/dashboard.js"></script>

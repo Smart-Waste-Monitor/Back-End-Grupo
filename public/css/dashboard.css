@@ -73,11 +73,13 @@ body {
   font-weight: bold;
   color: #696765;
 }
-.kpi-ajuda{
+
+.kpi-ajuda {
   font-size: 12px;
   font-weight: 600;
   color: #939295;
 }
+
 /* KPI FIM */
 
 .green {
@@ -94,30 +96,32 @@ body {
   align-items: flex-start;
 }
 
-.filtro{
+.filtro {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  
-  p{
+
+  p {
     font-size: 16px;
     font-weight: 700;
     color: #58575c;
     margin-right: 10px;
   }
-  select{
-    background-color:#ebebeb;
+
+  select {
+    background-color: #ebebeb;
     width: 560px;
     border: none;
   }
 }
-.selecao{
+
+.selecao {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-  background-color:#ebebeb;
-    border-radius: 0px 20px 0px 00px;
-    padding: 10px;
-    border: none;
-    width: 588px;
+  background-color: #ebebeb;
+  border-radius: 0px 20px 0px 00px;
+  padding: 10px;
+  border: none;
+  width: 588px;
 }
 
 .direita {
@@ -147,56 +151,65 @@ body {
   align-self: center;
 }
 
-.legendas{
+.legendas {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
   margin-bottom: -4px;
-  
-  p{
+
+  p {
     text-align: center;
     width: 160px;
     padding: 8px;
     color: #4a494e;
     font-weight: 600;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08); 
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
   }
 }
-.legenda-normal{
-  background-color:#ffffff;
+
+.legenda-normal {
+  background-color: #ffffff;
   border-radius: 10px 0px 0px 0px;
 }
-.legenda-alerta{
-  background-color:#ffe84f;
+
+.legenda-alerta {
+  background-color: #ffe84f;
 }
-.legenda-critico{
-  background-color:#fb492a;
+
+.legenda-critico {
+  background-color: #fb492a;
   border-radius: 0px 10px 0px 0px;
 }
 
-.filtros{
+.filtros {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-bottom: -16px; 
-  
-  button{
+  gap: 8px;
+  margin-bottom: -16px;
+
+  button {
     padding: 6px;
     background-color: #ebebeb;
     color: #4a494e;
     font-weight: 600;
-    width: 245px;
+    width: 160px;
     border: none;
+    cursor: pointer;
+    border-radius: 4px;
   }
-  button::hover{
+
+  button:hover { 
     background-color: #696765;
+    color: #fff;
   }
 }
+
 .lixeiras-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  /* quebra linha automaticamente */
   gap: 10px;
   padding: 20px;
   width: 500px;
@@ -207,20 +220,11 @@ body {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.14);
 }
 
-.fileira01,
-.fileira02,
-.fileira03,
-.fileira04,
-.fileira05 {
-  display: flex;
-  gap: 10px;
-}
-
 .lixeira-card {
-  flex: 1;
+  flex: 0 0 calc(33.333% - 7px);
+  /* exatamente 3 por linha */
   display: flex;
   align-items: center;
-  width: 140px;
   height: 88px;
   gap: 10px;
   padding: 8px;
