@@ -3,7 +3,7 @@ const botaoAbrir = document.getElementById('abrirModal');
 
 function modalQuimicos() {
 
-    minhaModal.innerHTML = `
+    modal.innerHTML = `
         <div class="modal">
             <button onclick="fecharModal()">Fechar</button>
 
@@ -15,6 +15,7 @@ function modalQuimicos() {
     modal.showModal();
 }
 
-function fecharModal(){
+function fecharModal() {
     modal.close();
-};
+    modal.innerHTML = '';
+}

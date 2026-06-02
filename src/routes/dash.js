@@ -16,4 +16,8 @@ router.post("/lixeirasCriticas", function (req, res) {
     dashController.consultaCriticasLixeiras(req, res);
 })
 
+router.post("/graficoEspec", function (req, res) {
+    dashController.consultaGraficoEspecifico(req, res);
+})
+
 module.exports = router;

@@ -1,19 +1,25 @@
 var database = require("../database/config");
 
 function lixeirasGerais() {
-    var instrucaoSql = `SELECT * FROM vw_geralVolumes;`;
+    var instrucaoSql = `SELECT * FROM vw_atualVolumes;`;
 
     return database.executar(instrucaoSql);
 }
 
 function lixeirasAlertas() {
-    var instrucaoSql = `SELECT * FROM vw_geralVolumes WHERE volume_percentual >= 50 && volume_percentual < 75;`;
+    var instrucaoSql = `SELECT * FROM vw_atualVolumes WHERE volume_percentual >= 50 && volume_percentual < 75;`;
 
     return database.executar(instrucaoSql);
 }
 
 function lixeirasCriticas() {
-    var instrucaoSql = `SELECT * FROM vw_geralVolumes  WHERE volume_percentual >= 75;`;
+    var instrucaoSql = `SELECT * FROM vw_atualVolumes  WHERE volume_percentual >= 75;`;
+
+    return database.executar(instrucaoSql);
+}
+
+function graficoEspecifico() {
+    var instrucaoSql = `SELECT * FROM vw_geralVolumes;`;
 
     return database.executar(instrucaoSql);
 }
@@ -21,5 +27,6 @@ function lixeirasCriticas() {
 module.exports = { 
     lixeirasGerais,
     lixeirasAlertas,
-    lixeirasCriticas
+    lixeirasCriticas,
+    graficoEspecifico
 };

@@ -47,15 +47,15 @@
 
             <div class="kpi">
                 <div class="kpiInfo">
-                    <span class="kpiTitulo">Lixeiras Cheias</span>
-                    <span class="kpiSecundario">Quantidade: 2</span>
+                    <span class="kpiTitulo">Lixeiras Críticas</span>
+                    <span class="kpiSecundario">Quantidade: <span id="valorCheio"></span> </span>
                 </div>
             </div>
 
             <div class="kpi">
                 <div class="kpiInfo">
-                    <span class="kpiTitulo">Lixeiras Vazias</span>
-                    <span class="kpiSecundario">Quantidade: 2</span>
+                    <span class="kpiTitulo">Lixeiras Dispostas</span>
+                    <span class="kpiSecundario">Quantidade: <span id="valorVazio"></span> </span>
                 </div>
             </div>
 
@@ -131,8 +131,49 @@
 
     let dados = [5, 5, 4, 4, 5, 6, 10, 18, 27, 35, 42, 50, 54, 58, 63, 67, 71, 76, 0, 10, 12, 17, 25, 34];
 
+    // Vamos começar a mexer com "zonas" olha que triste
+    // Cada zona tem um valor inicial (from), valor final (to) e a cor de fundo (color)
+    let Zonas = [
+        { from: 0, to: 50, color: 'rgba(0, 200, 80, 0.10)' }, // Verde -> nível normal (0% a 50%)
+        { from: 50, to: 75, color: 'rgba(255, 200, 0, 0.15)' }, // Amarelo -> atenção (50% a 75%)
+        { from: 75, to: 100, color: 'rgba(255, 50, 50, 0.15)' }, // Vermelho -> crítico (75% a 100%)
+    ];
+
+    // Plugin inline do Chart.js, pelo que entendi ele que desenha as zonas coloridas antes de qualquer dado aparecer
+    let fundoZonas = {
+        id: 'fundoZonas', // identificador único do nosso plugin
+
+        // beforeDraw é tipo o que seria um gancho tlgd. O Chart.js vai chama essa função automaticamente
+        // antes de desenhar qualquer elemento! E por isso recebe o objeto 'chart' que contém tudo sobre o gráfico atual
+        beforeDraw(chart) {
+            // Quebra e vamos pegar só o que vamo usa
+            // ctx -> Pensa num pincel, é tipo isso do chart, para desenhar tudo
+            // left/right -> posição em pixels onde a área do gráfico começa e termina (exclui os eixos e labels, pega só a área interna do negócio)
+            // y é a escala pae
+            let { ctx, chartArea: { left, right }, scales: { y } } = chart;
+
+            // Zona verde (0% a 50%)
+            let yTop = y.getPixelForValue(Zonas[0].to); // borda superior -> valor 50 convertido em pixel
+            let yBottom = y.getPixelForValue(Zonas[0].from); // borda inferior -> valor 0 convertido em pixel
+            ctx.fillStyle = Zonas[0].color;
+            ctx.fillRect(left, yTop, right - left, yBottom - yTop); // desenha a zona
+
+            // Zona amarela (50% a 75%)
+            yTop = y.getPixelForValue(Zonas[1].to); // borda superior -> valor 75 convertido em pixel
+            yBottom = y.getPixelForValue(Zonas[1].from); // borda inferior -> valor 50 convertido em pixel
+            ctx.fillStyle = Zonas[1].color;
+            ctx.fillRect(left, yTop, right - left, yBottom - yTop); // desenha a zona
+
+            // Zona vermelha (75% a 100%)
+            yTop = y.getPixelForValue(Zonas[2].to);    // borda superior -> valor 100 convertido em pixel
+            yBottom = y.getPixelForValue(Zonas[2].from);  // borda inferior -> valor 75 convertido em pixel
+            ctx.fillStyle = Zonas[2].color;
+            ctx.fillRect(left, yTop, right - left, yBottom - yTop); // desenha a zona
+        }
+    };
     var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
         type: 'line',
+        plugins: [fundoZonas], // registra o plugin apenas neste gráfico
         data: {
             labels: labels,
             datasets: [{
@@ -146,20 +187,20 @@
             scales: {
                 x: { beginAtZero: true },
                 y: {
-                    title: {
-                        display: true,
-                        text: '(0%-100%)'
-                    },
-                    beginAtZero: true
+                    title: { display: true, text: '(0%-100%)' },
+                    beginAtZero: true,
+                    max: 100
                 }
             }
         }
     });
 
-    function atualizarGrafico(novosDados, nomeLixeira) {
+    function atualizarGrafico(novosDados, nomeLixeira, novosLabels) {
         sensorDigital.data.datasets[0].data = novosDados;
+        sensorDigital.data.labels = novosLabels;
         sensorDigital.data.datasets[0].label = nomeLixeira;
         sensorDigital.update();
     }
 </script>
 <script src="./js/dashboard.js"></script>
+<script src="./js/sessao.js"></script>
