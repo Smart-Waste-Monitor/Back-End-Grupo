@@ -19,8 +19,8 @@ function lixeirasGeraisBusca() {
             lixeirasContainer.innerHTML = '';
             for (let i = 0; i < buscar1.length; i++) {
                 let distancia = buscar1[i].volume_percentual.toFixed(2)
-                
-                
+
+
                 let imagem = '';
                 if (buscar1[i].tipo_residuo.includes('Comum')) {
                     imagem = 'imgs/imgPorTipo/lixoComum.png'
@@ -34,18 +34,20 @@ function lixeirasGeraisBusca() {
                     imagem = 'imgs/imgPorTipo/lixoRadioativo.png'
                 }
                 let classe = '';
-                if(imagem == 'imgs/imgPorTipo/lixoRadioativo.png'){
+                if (imagem == 'imgs/imgPorTipo/lixoRadioativo.png') {
                     classe = 'lixeira-card red'
                     distancia = 'Urgente'
                 }
-                else if(distancia >= 75){
+                else if (distancia >= 75) {
                     classe = 'lixeira-card red'
-                }else if(distancia >= 50){
+                    distancia = `Volume: ${distancia}%`
+                } else if (distancia >= 50) {
                     classe = 'lixeira-card yellow'
-                }else {
+                    distancia = `Volume: ${distancia}%`
+                } else {
                     classe = 'lixeira-card'
+                    distancia = `Volume: ${distancia}%`
                 }
-                distancia = `Volume: ${distancia}%`
 
                 lixeirasContainer.innerHTML += `
                     <div class="${classe}">
@@ -85,7 +87,7 @@ function filtrarAlertas() {
             lixeirasContainer.innerHTML = '';
             for (let i = 0; i < buscar2.length; i++) {
                 let distancia = buscar2[i].volume_percentual
-                
+
                 let imagem = '';
                 if (buscar2[i].tipo_residuo.includes('Comum')) {
                     imagem = 'imgs/imgPorTipo/lixoComum.png'
@@ -99,11 +101,11 @@ function filtrarAlertas() {
                     imagem = 'imgs/imgPorTipo/lixoRadioativo.png'
                 }
                 let classe = '';
-                if(distancia >= 75){
+                if (distancia >= 75) {
                     classe = 'lixeira-card red'
-                }else if(distancia >= 50){
+                } else if (distancia >= 50) {
                     classe = 'lixeira-card yellow'
-                }else {
+                } else {
                     classe = 'lixeira-card'
                 }
 
@@ -144,7 +146,7 @@ function filtrarCriticos() {
             lixeirasContainer.innerHTML = '';
             for (let i = 0; i < buscar3.length; i++) {
                 let distancia = buscar3[i].volume_percentual
-                
+
                 let imagem = '';
                 if (buscar3[i].tipo_residuo.includes('Comum')) {
                     imagem = 'imgs/imgPorTipo/lixoComum.png'
@@ -158,11 +160,11 @@ function filtrarCriticos() {
                     imagem = 'imgs/imgPorTipo/lixoRadioativo.png'
                 }
                 let classe = '';
-                if(distancia >= 75){
+                if (distancia >= 75) {
                     classe = 'lixeira-card red'
-                }else if(distancia >= 50){
+                } else if (distancia >= 50) {
                     classe = 'lixeira-card yellow'
-                }else {
+                } else {
                     classe = 'lixeira-card'
                 }
 
