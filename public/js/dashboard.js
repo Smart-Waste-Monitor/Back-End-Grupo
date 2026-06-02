@@ -18,7 +18,8 @@ function lixeirasGeraisBusca() {
             console.log(buscar1)
             lixeirasContainer.innerHTML = '';
             for (let i = 0; i < buscar1.length; i++) {
-                let distancia = buscar1[i].volume_percentual
+                let distancia = buscar1[i].volume_percentual.toFixed(2)
+                
                 
                 let imagem = '';
                 if (buscar1[i].tipo_residuo.includes('Comum')) {
@@ -27,26 +28,31 @@ function lixeirasGeraisBusca() {
                     imagem = 'imgs/imgPorTipo/lixoBiologico.png'
                 } else if (buscar1[i].tipo_residuo.includes('Perfurocortante')) {
                     imagem = 'imgs/imgPorTipo/lixoPerfurante.png'
-                } else if (buscar1[i].tipo_residuo.includes('Quimico')) {
+                } else if (buscar1[i].tipo_residuo.includes('Químico')) {
                     imagem = 'imgs/imgPorTipo/lixoQuimico.png'
                 } else {
                     imagem = 'imgs/imgPorTipo/lixoRadioativo.png'
                 }
                 let classe = '';
-                if(distancia >= 75){
+                if(imagem == 'imgs/imgPorTipo/lixoRadioativo.png'){
+                    classe = 'lixeira-card red'
+                    distancia = 'Urgente'
+                }
+                else if(distancia >= 75){
                     classe = 'lixeira-card red'
                 }else if(distancia >= 50){
                     classe = 'lixeira-card yellow'
                 }else {
                     classe = 'lixeira-card'
                 }
+                distancia = `Volume: ${distancia}%`
 
                 lixeirasContainer.innerHTML += `
                     <div class="${classe}">
                         <div class="lixeiraIcone"><img src="${imagem}"></div>
                         <div class="lixeiraInfo">
                             <h3>${buscar1[i].nome_lixeira}</h3>
-                            <p>Volume: ${distancia.toFixed(2)}%</p>
+                            <p>${distancia}</p>
                         </div>
                     </div>
                 `;
