@@ -112,6 +112,7 @@ body {
     background-color: #ebebeb;
     width: 560px;
     border: none;
+    height: 100%;
   }
 }
 
@@ -119,9 +120,10 @@ body {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
   background-color: #ebebeb;
   border-radius: 0px 20px 0px 00px;
-  padding: 10px;
+  height: 40px;
   border: none;
   width: 588px;
+  z-index: 100;
 }
 
 .direita {
@@ -198,6 +200,7 @@ body {
     border: none;
     cursor: pointer;
     border-radius: 4px;
+    z-index: 100;
   }
 
   button:hover { 
@@ -232,6 +235,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
   transition: 0.2s;
+  z-index: 100;
 }
 
 .lixeira-card:hover {
