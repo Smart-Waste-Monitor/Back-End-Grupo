@@ -1,12 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BobIA</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/suporte.css">
+    <link rel="icon" type="image/png" href="./imgs/logo.png">
+
 </head>
+
 <body>
+
+    <nav>
+        <img src="imgs/logo.png" alt="Logo da Smart Waste Systems" class="logo">
+        <!-- Por que alt? E isso em várias imagens... Leitor de tela em resumo! -->
+
+        <div class="titulo">
+            <p>Smart Waste Systems</p>
+        </div>
+
+        <div class="links">
+            <a href="dashboard.html" class="escolhaLinks" id="dashboard"></a>
+            <a href="index.html" class="escolhaLinks">Home</a>
+            <a href="v1calculadora.html" class="escolhaLinks">Calculadora de Retorno</a>
+            <a href="login.html" class="escolhaLinks login" id="login">Login</a>
+        </div>
+    </nav>
 
     <div id="container">
         <h1>BobIA</h1>
@@ -17,8 +39,12 @@
         <div id="resposta"></div>
     </div>
 
+    <footer class="footer">
+        &copy;Todos os direitos reservados a Smart Waste Systems
+    </footer>
+
     <script>
-        
+
         async function gerarResposta() {
             const pergunta = document.getElementById('pergunta').value;
 
@@ -37,6 +63,7 @@
         }
 
     </script>
-    
+
 </body>
+
 </html>
