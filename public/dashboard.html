@@ -35,13 +35,13 @@
 
     <div class="container">
         <div class="indicadores">
-            <div class="kpi red" onclick="modalQuimicos()">
+            <div class="kpi" id="kpi" onclick="modalQuimicos()">
                 <div class="kpiIcone">
                     <img src="">
                 </div>
                 <div class="kpiInfo">
                     <span class="kpiTitulo">Quimicas cheias</span>
-                    <span class="kpiSecundario status">Quantidade: 2</span>
+                    <span class="kpiSecundario status" id="valorQuimicoCheia"></span>
                 </div>
             </div>
 
@@ -127,9 +127,9 @@
 </html>
 <script src="./js/modal.js"></script>
 <script>
-    let labels = ['00h', '01h', '02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h', '16h', '17h', '18h', '19h', '20h', '21h', '22h', '23h'];
+    let labels = [];
 
-    let dados = [5, 5, 4, 4, 5, 6, 10, 18, 27, 35, 42, 50, 54, 58, 63, 67, 71, 76, 0, 10, 12, 17, 25, 34];
+    let dados = [];
 
     // Vamos começar a mexer com "zonas" olha que triste
     // Cada zona tem um valor inicial (from), valor final (to) e a cor de fundo (color)

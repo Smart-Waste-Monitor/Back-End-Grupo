@@ -18,6 +18,7 @@ function lixeirasGeraisBusca() {
             console.log(buscar1)
             lixeirasContainer.innerHTML = '';
             let contarCheio = 0;
+            let contarQuimico = 0;
             let contarVazio = 0;
             for (let i = 0; i < buscar1.length; i++) {
                 let distancia = buscar1[i].volume_percentual.toFixed(2)
@@ -61,6 +62,10 @@ function lixeirasGeraisBusca() {
                     </div>
                 `;
 
+                if(classe == 'lixeira-card red' && imagem == 'imgs/imgPorTipo/lixoQuimico.png'){
+                    contarQuimico++;
+                }
+                
                 if (classe == 'lixeira-card red') {
                     contarCheio++;
                 } else if (classe == 'lixeira-card') {
@@ -69,6 +74,13 @@ function lixeirasGeraisBusca() {
             }
             valorCheio.innerHTML = contarCheio;
             valorVazio.innerHTML = contarVazio;
+            console.log(contarQuimico);
+            if(contarQuimico>0){
+                valorQuimicoCheia.innerHTML = `Quantidade: ${contarQuimico}`;
+                kpi.classList.add('red');
+            }else{
+                valorQuimicoCheia.innerHTML = `Nenhuma Cheia`
+            }
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
