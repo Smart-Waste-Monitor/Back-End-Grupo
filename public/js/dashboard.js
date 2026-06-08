@@ -62,7 +62,7 @@ function lixeirasGeraisBusca() {
                     </div>
                 `;
 
-                if (classe == 'lixeira-card red' && imagem == 'imgs/imgPorTipo/lixoQuimico.png') {
+                if (classe == 'lixeira-card red' && imagem == 'imgs/imgPorTipo/lixoRadioativo.png') {
                     contarQuimico++;
                 }
 
