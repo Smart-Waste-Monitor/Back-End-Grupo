@@ -87,9 +87,17 @@ function graficoEspecifico() {
         });
 }
 
+function graficoFiltrado(filtro) {
+    return refresha()
+        .then(function () {
+            return database.executar(`SELECT * FROM vw_geralVolumes WHERE tipo_residuo LIKE '%${filtro}%'`);
+        });
+}
+
 module.exports = {
     lixeirasGerais,
     lixeirasAlertas,
     lixeirasCriticas,
-    graficoEspecifico
+    graficoEspecifico,
+    graficoFiltrado
 };

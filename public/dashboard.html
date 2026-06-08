@@ -92,13 +92,13 @@
                     <p>Filtrar por</p>
 
                     <div class="selecao">
-                        <select name="select_filtro" id="selecao">
+                        <select name="select_filtro" id="selecao" onclick="filtroSelect()">
                             <option value="0">Selecione uma opção</option>
                             <option value="1">Radioativo</option>
                             <option value="2">Biologico</option>
                             <option value="3">Quimico</option>
                             <option value="4">Perfurante</option>
-                            <option value="5">Comun</option>
+                            <option value="5">Comum</option>
                         </select>
                     </div>
                 </div>
@@ -174,15 +174,15 @@
     var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
         type: 'line',
         plugins: [fundoZonas], // registra o plugin apenas neste gráfico
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Lixeira A',
-                data: dados,
-                borderColor: '#63B1BC',
-                backgroundColor: '#012790',
-            }]
-        },
+        // data: {
+        //     labels: labels,
+        //     datasets: [{
+        //         label: 'Lixeira A',
+        //         data: dados,
+        //         borderColor: '#63B1BC',
+        //         backgroundColor: '#012790',
+        //     }]
+        // },
         options: {
             scales: {
                 x: { beginAtZero: true },
@@ -196,9 +196,62 @@
     });
 
     function atualizarGrafico(novosDados, nomeLixeira, novosLabels) {
-        sensorDigital.data.datasets[0].data = novosDados;
+        sensorDigital.data.datasets = []; // limpa todos os datasets anteriores
+        sensorDigital.data.datasets.push({
+            label: nomeLixeira,
+            data: novosDados,
+            borderColor: '#63B1BC',
+            backgroundColor: '#63B1BC33',
+        });
         sensorDigital.data.labels = novosLabels;
-        sensorDigital.data.datasets[0].label = nomeLixeira;
+        sensorDigital.update();
+    }
+
+    function atualizarGraficoFiltrado(dados) {
+        // Aqui eu vou criar um objeto que vai guardar os dados agrupando por lixeira tlgd?
+        var grupos = {};
+
+        for (let i = 0; i < dados.length; i++) {
+            var nome = dados[i].nome_lixeira;
+
+            // Pensa que o grupos é vazio no inicio, conforme o loop vai indo, mas primeiro ele verifica se ja foi criado as
+            // condições tlgd? Então ele vai checar "se a lixeira já foi criada"
+            if (!grupos[nome]) {
+                grupos[nome] = { labels: [], valores: [] };
+            }
+
+            // Explicado no dashboard.js linha 256
+            let dataStr = dados[i].data_medicao.toString().substring(0, 16);
+            let partes = dataStr.split("T");
+            let dataFormatada = partes[1];
+
+            // Adiciona o horário e o volume nos arrays da lixeira correspondente
+            grupos[nome].labels.push(dataFormatada);
+            grupos[nome].valores.push(dados[i].volume_percentual);
+        }
+
+        // Object.keys(grupos) vai pegar o nome de cada lixeira!!
+        // Já o .map() vai percorrer cada nome e transformar em um dataset pro chart
+        var cores = ['#63B1BC', '#4A90A4', '#2E6B7A', '#1A4A56', '#0D2F38', '#85C8D4'];
+        var datasets = Object.keys(grupos).map(function (nome, i) {
+            // Um exemplo de funcionamento do .map é:
+            // nome = nome da lixeira atual | i = posição do array
+
+            // % cores.length garante que se tiver mais lixeiras que cores, volta pro início do array
+            return {
+                label: nome,// nome que aparece na legenda do gráfico
+                data: grupos[nome].valores,// array de volumes daquela lixeira
+                borderColor: cores[i % cores.length],// cor da linha
+                backgroundColor: cores[i % cores.length] + '33',// mesma cor com transparência 
+            };
+        });
+
+        // Vai usar os labels da primeira lixeira como o eixo X de tudo!
+        var labelsComuns = grupos[Object.keys(grupos)[0]].labels;
+
+        // Atualiza o gráfico com os novos datasets e labels
+        sensorDigital.data.labels = labelsComuns;
+        sensorDigital.data.datasets = datasets;
         sensorDigital.update();
     }
 </script>

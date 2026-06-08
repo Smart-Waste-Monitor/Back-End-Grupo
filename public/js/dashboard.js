@@ -62,10 +62,10 @@ function lixeirasGeraisBusca() {
                     </div>
                 `;
 
-                if(classe == 'lixeira-card red' && imagem == 'imgs/imgPorTipo/lixoQuimico.png'){
+                if (classe == 'lixeira-card red' && imagem == 'imgs/imgPorTipo/lixoQuimico.png') {
                     contarQuimico++;
                 }
-                
+
                 if (classe == 'lixeira-card red') {
                     contarCheio++;
                 } else if (classe == 'lixeira-card') {
@@ -75,10 +75,10 @@ function lixeirasGeraisBusca() {
             valorCheio.innerHTML = contarCheio;
             valorVazio.innerHTML = contarVazio;
             console.log(contarQuimico);
-            if(contarQuimico>0){
+            if (contarQuimico > 0) {
                 valorQuimicoCheia.innerHTML = `Quantidade: ${contarQuimico}`;
                 kpi.classList.add('red');
-            }else{
+            } else {
                 valorQuimicoCheia.innerHTML = `Nenhuma Cheia`
             }
         })
@@ -272,3 +272,45 @@ function graficoEspecifico(elemento) {
             console.log(`#ERRO: ${resposta}`);
         });
 }
+
+
+let buscar5 = [];
+function filtroSelect() {
+    let filtroVar = selecao.value
+    if (filtroVar == 1) {
+        filtroVar = 'Radioativo'
+    } else if (filtroVar == 2) {
+        filtroVar = 'Infectante'
+    } else if (filtroVar == 3) {
+        filtroVar = 'Químico'
+    } else if (filtroVar == 4) {
+        filtroVar = 'Perfurocortante'
+    } else {
+        filtroVar = 'Comum'
+    }
+    console.log(filtroVar)
+    fetch("/dash/graficoFiltrado", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            filtroServer: filtroVar,
+        })
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw "Houve um erro ao tentar realizar a consulta!";
+            }
+        })
+        .then(function (dados) {
+            buscar5 = dados;
+            console.log(buscar5);
+            atualizarGraficoFiltrado(buscar5);
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}   

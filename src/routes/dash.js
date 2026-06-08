@@ -20,4 +20,8 @@ router.post("/graficoEspec", function (req, res) {
     dashController.consultaGraficoEspecifico(req, res);
 })
 
+router.post("/graficoFiltrado", function (req, res) {
+    dashController.consultaGraficoFiltrado(req, res);
+})
+
 module.exports = router;
