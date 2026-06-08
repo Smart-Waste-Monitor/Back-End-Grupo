@@ -121,9 +121,9 @@
         resultado.innerHTML = `
             <div style="display:flex; flex-direction:column; gap:10px;">
                 <!-- GASTO ATUAL -->
-                <div style="padding:10px; border:1px solid #e5e7eb; border-radius:10px;">
+                <div style="padding:10px; border:1px solid #e5e7eb; border-radius:10px; margin-top: 12px;">
                     <div style="font-size:13px; color:#6b7280;">Gasto atual mensal <span>sem</span> o nosso sistema</div>
-                    <div style="font-size:26px; font-weight:600; color:#dc2626;">
+                    <div style="font-size:24px; font-weight:600; color:#dc2626;">
                         ${custoAtual.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
                     </div>
                 </div>
@@ -131,7 +131,7 @@
                 <!-- GASTO OTIMIZADO -->
                 <div style="padding:10px; border:1px solid #e5e7eb; border-radius:10px;">
                     <div style="font-size:13px; color:#6b7280;">Gasto mensal com implementação + sistema</div>
-                    <div style="font-size:26px; font-weight:600; color:#111827;">
+                    <div style="font-size:24px; font-weight:600; color:#111827;">
                         ${custoFinal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                 <!-- ECONOMIA -->
                 <div style="padding:10px; border-radius:12px; background:#f0fdf4; border:1px solid #bbf7d0;">
                     <div style="font-size:13px; color:#166534;">Economia mensal</div>
-                    <div style="font-size:32px; font-weight:700; color:#16a34a;">
+                    <div style="font-size:27px; font-weight:700; color:#16a34a;">
                         ${economiaBruta.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
                     </div>
                     <div style="font-size:13px; color:#166534; font-weight: 700;">
@@ -150,7 +150,7 @@
                 <!-- LUCRO FINAL -->
                 <div style="padding:10px; border-radius:12px; background:#eff6ff; border:1px solid #bfdbfe;">
                     <div style="font-size:13px; color:#1d4ed8;">Resultado mensal</div>
-                    <div style="font-size:30px; font-weight:700; color:#1d4ed8;">
+                    <div style="font-size:27px; font-weight:700; color:#1d4ed8;">
                         ${lucroMensal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
                     </div>
                     <div style="font-size:13px; color:#1d4ed8;">
