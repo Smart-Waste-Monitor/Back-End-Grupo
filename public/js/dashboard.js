@@ -19,6 +19,7 @@ function lixeirasGeraisBusca() {
             lixeirasContainer.innerHTML = '';
             let contarCheio = 0;
             let contarQuimico = 0;
+            let contarYellow = 0;
             let contarVazio = 0;
             for (let i = 0; i < buscar1.length; i++) {
                 let distancia = buscar1[i].volume_percentual.toFixed(2)
@@ -70,10 +71,13 @@ function lixeirasGeraisBusca() {
                     contarCheio++;
                 } else if (classe == 'lixeira-card') {
                     contarVazio++;
+                }else{
+                    contarYellow++;
                 }
             }
             valorCheio.innerHTML = contarCheio;
             valorVazio.innerHTML = contarVazio;
+            valorCheioYellow.innerHTML = contarYellow;
             console.log(contarQuimico);
             if (contarQuimico > 0) {
                 valorQuimicoCheia.innerHTML = `Quantidade: ${contarQuimico}`;

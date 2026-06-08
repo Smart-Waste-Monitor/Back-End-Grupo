@@ -76,7 +76,7 @@ function lixeirasAlertas() {
 function lixeirasCriticas() {
     return refresha()
         .then(function () {
-            return database.executar(`SELECT * FROM vw_atualVolumes WHERE volume_percentual >= 75`);
+            return database.executar(`SELECT * FROM vw_atualVolumes WHERE volume_percentual >= 75 OR (tipo_residuo LIKE '%radioativo%' AND volume_percentual>= 1)`);
         });
 }
 
