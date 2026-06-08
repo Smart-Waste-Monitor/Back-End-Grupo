@@ -21,6 +21,8 @@ function lixeirasGeraisBusca() {
             let contarQuimico = 0;
             let contarYellow = 0;
             let contarVazio = 0;
+            let msg = '';
+            let msg2 = '';
             for (let i = 0; i < buscar1.length; i++) {
                 let distancia = buscar1[i].volume_percentual.toFixed(2)
 
@@ -69,11 +71,22 @@ function lixeirasGeraisBusca() {
 
                 if (classe == 'lixeira-card red') {
                     contarCheio++;
+                    msg2 = `\nNome da Lixeira: ${buscar1[i].nome_lixeira}\nVolume: ${distancia}\n`;
+                    msg += `\nNome da Lixeira: ${buscar1[i].nome_lixeira}\nVolume: ${distancia}\n`;
+                    cadastrarAlerta(msg2,distancia,buscar1[i].ultima_medicao, buscar1[i].id_leitura)
                 } else if (classe == 'lixeira-card') {
                     contarVazio++;
-                }else{
+                } else {
                     contarYellow++;
                 }
+
+
+            }
+            if (msg == '') {
+
+            } else {
+                msg = `Número de Lixeiras Críticas: ${contarCheio}\n${msg}`
+                alert(msg)
             }
             valorCheio.innerHTML = contarCheio;
             valorVazio.innerHTML = contarVazio;
@@ -317,4 +330,55 @@ function filtroSelect() {
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
-}   
+}
+
+function cadastrarAlerta(msg, nivel, dataHora, idLeitura) {
+    fetch("/dash/alertasCadastro", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            msgServer: msg,
+            nivelServer: nivel,
+            dataHoraServer: dataHora,
+            idLeituraServer: idLeitura,
+        }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+    return false;
+}
+
+let buscar6 = [];
+function consultadoAlerta() {
+    fetch("/dash/consultaAlertado", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                return resposta.json();
+            } else {
+                throw "Houve um erro ao tentar realizar a consulta!";
+            }
+        })
+        .then(function (dados) {
+            buscar6 = dados;
+            console.log(buscar6);
+            alertasTotaisQtd.innerHTML = buscar6[0].contagem;
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+
+consultadoAlerta();

@@ -36,7 +36,8 @@ function refresha() {
         .then(function () {
             return database.executar(`
                 CREATE VIEW vw_atualVolumes AS
-                SELECT l.identificacao AS nome_lixeira,
+                SELECT le.idLeitura AS id_leitura, 
+                    l.identificacao AS nome_lixeira,
                     t.descricao AS tipo_residuo,
                     le.volumeAtual AS volume_atual,
                     ROUND(((400 - le.volumeAtual) / 400) * 100, 2) AS volume_percentual,
@@ -94,10 +95,21 @@ function graficoFiltrado(filtro) {
         });
 }
 
+function cadastrarAlerta(msg, nivel, dataHora, fkLeitura) {
+    const dt = new Date(dataHora).toISOString().slice(0, 19).replace('T', ' ');
+    return database.executar(`INSERT INTO alerta VALUES (default,'${nivel}','${msg}','${dt}',${fkLeitura})`);
+}
+
+function consultaAlerta() {
+    return database.executar(`SELECT COUNT(idAlerta) AS contagem FROM alerta;`);
+}
+
 module.exports = {
     lixeirasGerais,
     lixeirasAlertas,
     lixeirasCriticas,
     graficoEspecifico,
-    graficoFiltrado
+    graficoFiltrado,
+    cadastrarAlerta,
+    consultaAlerta
 };

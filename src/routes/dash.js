@@ -24,4 +24,12 @@ router.post("/graficoFiltrado", function (req, res) {
     dashController.consultaGraficoFiltrado(req, res);
 })
 
+router.post("/alertasCadastro", function (req, res) {
+    dashController.cadastroAlerta(req, res);
+})
+
+router.post("/consultaAlertado", function (req, res) {
+    dashController.alerta(req, res);
+})
+
 module.exports = router;
