@@ -33,6 +33,7 @@
         border-radius: 14px;
         border: 1px solid #e5e7eb;
         transition: all 0.2s ease;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     }
 
     .container:hover,
@@ -90,7 +91,7 @@
         margin-top: 10px;
         padding: 14px;
         width: 100%;
-        background: #111827;
+        background: #26334f;
         color: white;
         border: none;
         border-radius: 8px;
@@ -101,7 +102,7 @@
     }
 
     button:hover {
-        background: #283344;
+        background: rgb(24, 31, 42);
     }
 
     .resultado {
@@ -138,7 +139,7 @@ nav{
     font-size:20px;
     font-weight:600;
     color:#111827;
-    padding: 0px 0px 0px 183px;
+    padding: 0px 0px 0px 190px;
 }
 
 .links{

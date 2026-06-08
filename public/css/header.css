@@ -1,0 +1,50 @@
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding: 10px 40px;
+    background:white;
+    border-bottom:1px solid #e5e7eb;
+}
+.logo{
+    width: 100px;
+    height: 50px;
+}
+
+.titulo p{
+    font-size:20px;
+    font-weight:600;
+    color:#111827;
+    padding-left: 170px;
+}
+
+.links{
+    display:flex;
+    gap:20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.escolhaLinks{
+    text-decoration:none;
+    color:#374151;
+    font-size:14px;
+    transition:0.2s;
+    justify-content: center;
+    align-items: center;
+}
+
+.escolhaLinks:hover{
+    color:#111827;
+}
+
+.login{
+    background:#111827;
+    color:white;
+    padding:8px 10px;
+    border-radius:8px;
+}
+
+.login:hover{
+    background:#283344;
+}
