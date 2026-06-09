@@ -41,10 +41,18 @@ function entrar() {
 
                     if(json.email == "bob.suporte@gmail.com"){
                         setTimeout(function () {
+                        cardErro.style.display = "block";
+                        cardErro.style.background = "linear-gradient(135deg, #26dc35, #538f09)";
+                        mensagem_erro.innerHTML =
+                        "Login para (suporte) efetuado com sucesso";
                             window.location = "./suporte.html";
                         }, 1000);    
                     }else{
                     setTimeout(function () {
+                        cardErro.style.display = "block";
+                        cardErro.style.background = "linear-gradient(135deg, #26dc35, #538f09)";
+                        mensagem_erro.innerHTML =
+                        "Login efetuado com sucesso! Redirecionando para a Dashboard...";
                         window.location = "./dashboard.html";
                     }, 1000); // apenas para exibir o loading
                     }
@@ -55,7 +63,10 @@ function entrar() {
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
-
+                cardErro.style.display = "block";
+                cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
+                mensagem_erro.innerHTML =
+                        "(Usuario inválido) Tente novamente";
                 resposta.text().then(texto => {
                     console.error(texto);
                 });

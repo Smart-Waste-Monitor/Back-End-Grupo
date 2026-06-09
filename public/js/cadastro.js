@@ -45,7 +45,7 @@
       cardErro.style.display = "block";
       cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
       mensagem_erro.innerHTML =
-        "(Não contém arroba)";
+        "(Não contém '@' na email)";
       finalizarAguardar();
       return false;
 
@@ -54,7 +54,7 @@
       cardErro.style.display = "block";
       cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
       mensagem_erro.innerHTML =
-        "(Não contém .)";
+        "(Não contém '.' na email)";
       finalizarAguardar();
       return false;
 
@@ -63,7 +63,7 @@
       cardErro.style.display = "block";
       cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
       mensagem_erro.innerHTML =
-        "(Senha com 6 ou menos digitos)";
+        "(A senha precisa ter 7 ou mais caracteres)";
       finalizarAguardar();
       return false;
 
@@ -72,11 +72,37 @@
       cardErro.style.display = "block";
       cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
       mensagem_erro.innerHTML =
-        "(Não é igual a senha)";
+        "(As senhas não são iguais)";
       finalizarAguardar();
       return false;
 
-    } else {
+    }else if(!senhaVar.includes("1")&&!senhaVar.includes("2")&&!senhaVar.includes("3")&&!senhaVar.includes("4")
+    &&!senhaVar.includes("5")&&!senhaVar.includes("6")&&!senhaVar.includes("7")&&!senhaVar.includes("8")
+    && !senhaVar.includes("9") ){
+      cardErro.style.display = "block";
+      cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
+      mensagem_erro.innerHTML =
+        "(A senha precisa ter numeros)";
+      finalizarAguardar();
+      return false; 
+
+    }else if (senhaVar.toLowerCase() == senhaVar) {
+      cardErro.style.display = "block";
+      cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
+      mensagem_erro.innerHTML =
+        "(A senha precisa ter pelo menos uma letra maiúscula)";
+      finalizarAguardar();
+      return false; 
+
+    }else if (senhaVar.toUpperCase() == senhaVar) {
+      cardErro.style.display = "block";
+      cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
+      mensagem_erro.innerHTML =
+        "(A senha precisa ter pelo menos uma letra minúscula)";
+      return false;
+}
+
+    else {
       // fecha em 5 segundos se não tiver erros
       setTimeout(sumirMensagem, 5000);
     }
