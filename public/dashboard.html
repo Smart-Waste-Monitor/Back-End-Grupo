@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="./imgs/logo.png">
 </head>
+
 <body class="body-dash">
     <nav>
         <div class="logo">
@@ -38,7 +40,7 @@
                 </div>
             </div>
 
-            <div class="kpi"  id="kpiQuimico" onclick="modalQuimicos()">
+            <div class="kpi" id="kpiQuimico" onclick="modalQuimicos()">
                 <div class="kpiInfo">
                     <span class="kpiTitulo">Quimicas</span>
                     <span class="kpiSecundario status" id="valorQuimicoCheia"></span>
@@ -58,14 +60,14 @@
                     <span class="kpiSecundario">Quantidade: <span id="valorVazio"></span> </span>
                 </div>
             </div>
-            
+
             <div class="kpi">
                 <div class="kpiInfo">
                     <span class="kpiTitulo">Lixeiras Alerta</span>
                     <span class="kpiSecundario">Quantidade: <span id="valorCheioYellow"></span> </span>
                 </div>
             </div>
-            
+
             <div class="kpi">
                 <div class="kpiInfo">
                     <span class="kpiTitulo">Lixeiras Críticas</span>
@@ -80,52 +82,53 @@
 
         <div class="alerta_erro" id="telaEscura">
 
-        <div class="Alertas" id="Alertas">
-            <span class="icone_alerta">⚠️</span>
-            <div class="conteudo_alerta">
-                <span id="mensagem_erro"></span>
+            <div class="Alertas" id="Alertas">
+                <span class="icone_alerta">⚠️</span>
+                <div class="conteudo_alerta">
+                    <span id="mensagem_erro"></span>
+                </div>
+                <span id="fechar" onclick="sumirMensagem()">&times;</span>
             </div>
-            <span id="fechar" onclick="sumirMensagem()">&times;</span>
         </div>
-    </div>
 
-    <div class="tudo">
-        <div class="esquerda">
-            <div class="filtro">
-                <p>Filtrar por</p>
+        <div class="tudo">
+            <div class="esquerda">
+                <div class="filtro">
+                    <p>Filtrar por</p>
 
-                <div class="selecao">
-                    <select name="select_filtro" id="selecao" onclick="filtroSelect()">
-                        <option value="0">Selecione uma opção</option>
-                        <option value="1">Radioativo</option>
-                        <option value="2">Infectante</option>
-                        <option value="3">Quimico</option>
-                        <option value="4">Perfurante</option>
-                        <option value="5">Comum</option>
-                    </select>
+                    <div class="selecao">
+                        <select name="select_filtro" id="selecao" onclick="filtroSelect()">
+                            <option value="0">Selecione uma opção</option>
+                            <option value="1">Radioativo</option>
+                            <option value="2">Infectante</option>
+                            <option value="3">Quimico</option>
+                            <option value="4">Perfurante</option>
+                            <option value="5">Comum</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="content">
+                    <canvas class="grafico" id="sensorDigital"></canvas>
                 </div>
             </div>
-            <div class="content">
-                <canvas class="grafico" id="sensorDigital"></canvas>
+
+            <div class="direita">
+                <div class="legendas">
+                    <p class="legenda-normal">De 0% a 50%</p>
+                    <p class="legenda-alerta">De 50% a 75%</p>
+                    <p class="legenda-critico">De 75% a 100%</p>
+                </div>
+                <div class="filtros">
+                    <button onclick="lixeirasGeraisBusca()">Visão Geral</button>
+                    <button onclick="filtrarAlertas()">Filtrar por Alertas</button>
+                    <button onclick="filtrarCriticos()">Filtrar por Criticos</button>
+                </div>
+                <div class="lixeiras-container" id="lixeirasContainer"></div>
             </div>
         </div>
-        
-        <div class="direita">
-            <div class="legendas">
-                <p class="legenda-normal">De 0% a 50%</p>
-                <p class="legenda-alerta">De 50% a 75%</p>
-                <p class="legenda-critico">De 75% a 100%</p>
-            </div>
-            <div class="filtros">
-                <button onclick="lixeirasGeraisBusca()">Visão Geral</button>
-                <button onclick="filtrarAlertas()">Filtrar por Alertas</button>
-                <button onclick="filtrarCriticos()">Filtrar por Criticos</button>
-            </div>
-            <div class="lixeiras-container" id="lixeirasContainer"></div>
-        </div>
-    </div>
 
 </body>
+
 </html>
 <script src="./js/modal.js"></script>
 <script>
@@ -214,8 +217,7 @@
             grupos[nome].labels.push(dataFormatada);
             grupos[nome].valores.push(dados[i].volume_percentual);
         }
-
-        var cores = ['#63B1BC', '#4A90A4', '#2E6B7A', '#1A4A56', '#0D2F38', '#85C8D4'];
+var cores = ['#5B8DEF', '#9B5DE5', '#F4A261','#577590','#C77DFF', '#4895EF' ];
 
         // Cria uma linha para cada lixeira
         var datasets = Object.keys(grupos).map(function (nome, i) {
