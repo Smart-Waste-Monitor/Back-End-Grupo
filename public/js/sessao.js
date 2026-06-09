@@ -1,5 +1,6 @@
 const usuario = JSON.parse(sessionStorage.getItem('usuario'));
-//vetor com os caminhos
+
+// Lista de páginas que podem ser acessadas sem login
 let paginasPublicas = [
     "/index.html",
     "/login.html",
@@ -10,6 +11,7 @@ let paginasPublicas = [
 let paginaAtual = window.location.pathname;
 
 if (!usuario) {
+    // Se não estiver logado e tentar acessar uma página protegida
     if (!paginasPublicas.includes(paginaAtual)) {
         window.location.href = "/index.html";
     }
