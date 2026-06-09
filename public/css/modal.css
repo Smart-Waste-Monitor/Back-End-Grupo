@@ -9,6 +9,9 @@ dialog{
     align-items: center;
 }
 .modal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     border: none;
     border-radius: 8px;
     padding: 20px;
@@ -28,6 +31,7 @@ dialog{
 
 .modal button {
     background:#111827;
+    width: 80px;
     color:white;
     padding:8px 10px;
     border-radius:8px;
@@ -35,4 +39,15 @@ dialog{
 .modal button:hover{
     transform: translateY(-2px);
     transition: 300ms;
+}
+
+.modal-lixeira-card{
+    padding: 10px;
+    background-color: #eceff5;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
+    strong{
+        margin-bottom: 10px;
+    }
 }

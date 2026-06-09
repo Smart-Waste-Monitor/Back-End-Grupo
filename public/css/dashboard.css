@@ -66,12 +66,20 @@ body {
 
 .kpiSecundario {
   font-size: 18px;
-  color: #58575c;
+  color: #2b2b2e;
+}
+#valorQuimicoCheia{
+  font-size: 18px;
+  color: #2b2b2e;
+}
+#valorRadioativaCheia{
+  font-size: 18px;
+  color: #2b2b2e;
 }
 
 .kpiValor {
   font-weight: bold;
-  color: #696765;
+  color: #2b2b2e;
 }
 
 .kpi-ajuda {

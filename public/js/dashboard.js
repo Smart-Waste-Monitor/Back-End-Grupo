@@ -93,10 +93,10 @@ function lixeirasGeraisBusca() {
             valorCheioYellow.innerHTML = contarYellow;
             console.log(contarQuimico);
             if (contarQuimico > 0) {
-                valorQuimicoCheia.innerHTML = `Quantidade: ${contarQuimico}`;
+                valorRadioativaCheia.innerHTML = `Quantidade: ${contarQuimico}`;
                 kpi.classList.add('red');
             } else {
-                valorQuimicoCheia.innerHTML = `Nenhuma Cheia`
+                valorRadioativaCheia.innerHTML = `Nenhuma Cheia`
             }
         })
         .catch(function (resposta) {
