@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +8,8 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/suporte.css">
     <link rel="icon" type="image/png" href="./imgs/logo.png">
-
 </head>
-
 <body>
-
     <nav>
         <img src="imgs/logo.png" alt="Logo da Smart Waste Systems" class="logo">
         <!-- Por que alt? E isso em várias imagens... Leitor de tela em resumo! -->
@@ -30,47 +26,43 @@
         </div>
     </nav>
 
-
     <section id="main">
         <div id="nav">
             <a href="https://smartwastesptech.atlassian.net/jira/software/projects/SCRUM/boards/1?atlOrigin=eyJpIjoiNWIzN2YwM2IzYjMyNGQyODgyM2MyMzY2MTE0ZDQyOGQiLCJwIjoiaiJ9" target="_blank" ><button>Acesse o nosso JIRA</button></a>
             <a href="https://www.mediafire.com/file/gabqyro0be3ay9f/documenta%25C3%25A7%25C3%25A3o_de_pi.pdf/file" target="_blank"><button>Baixe a documentação</button></a>
             <a href="https://www.mediafire.com/file/sjl8h31zbjuf2yn/Manual_Smart_Monitor.pdf/file"  target="_blank"><button>Baixe o manual </button></a>
-    </div>
-    <div id="container">
-        <h1>BobIA</h1>
-        <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
-        <br><br>
-        <button onclick="gerarResposta()">Gerar Resposta</button>
-        <h3>Resposta da IA:</h3>
-        <div id="resposta"></div>
-    </div>
-</section>
+        </div>
+        <div id="container">
+            <h1>BobIA</h1>
+            <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+            <br><br>
+            <button onclick="gerarResposta()">Gerar Resposta</button>
+            <h3>Resposta da IA:</h3>
+            <div id="resposta"></div>
+        </div>
+    </section>
+
     <footer class="footer">
         &copy;Todos os direitos reservados a Smart Waste Systems
     </footer>
-
-    <script>
-
-        async function gerarResposta() {
-            const pergunta = document.getElementById('pergunta').value;
-
-            const response = await fetch('/perguntar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ pergunta })
-            });
-
-            const data = await response.json();
-
-            resposta.style.display = 'block';
-            document.getElementById('resposta').innerText = data.resultado;
-        }
-
-    </script>
-
 </body>
-
 </html>
+
+<script>
+    async function gerarResposta() {
+        const pergunta = document.getElementById('pergunta').value;
+
+        const response = await fetch('/perguntar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ pergunta })
+        });
+
+        const data = await response.json();
+
+        resposta.style.display = 'block';
+        document.getElementById('resposta').innerText = data.resultado;
+    }
+</script>
