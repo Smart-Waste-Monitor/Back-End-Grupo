@@ -41,6 +41,7 @@ dialog{
     transition: 300ms;
 }
 
+
 .modal-lixeira-card{
     padding: 10px;
     background-color: #eceff5;
@@ -51,3 +52,54 @@ dialog{
         margin-bottom: 10px;
     }
 }
+
+.alerta_erro {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.45); 
+}
+
+.Alertas {
+    background: linear-gradient(135deg, #7a1212, #4f0a0a);
+    color: #fff;
+    width: 420px;
+    padding: 22px 24px;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.icone_alerta {
+    font-size: 32px;
+    line-height: 1;
+}
+
+.conteudo_alerta {
+    flex: 1;
+}
+
+#mensagem_erro {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.5;
+    display: block;
+    white-space: pre-line;
+}
+#fechar {
+    font-size: 22px;
+    cursor: pointer;
+    opacity: 0.75;
+    transition: opacity 0.2s, transform 0.2s;
+}
+#fechar:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+>>>>>>> Stashed changes

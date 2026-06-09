@@ -86,7 +86,9 @@ function lixeirasGeraisBusca() {
 
             } else {
                 msg = `Número de Lixeiras Críticas: ${contarCheio}\n${msg}`
-                alert(msg)
+                Alertas.style.display = "flex"
+                mensagem_erro.innerHTML = msg
+                
             }
             valorCheio.innerHTML = contarCheio;
             valorVazio.innerHTML = contarVazio;
@@ -382,3 +384,8 @@ function consultadoAlerta() {
 }
 
 consultadoAlerta();
+
+function sumirMensagem() {
+    Alertas.style.display = "none"
+    telaEscura.style.display = "none"
+}
