@@ -47,12 +47,16 @@ function cadastrar(req, res) {
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
+        console.log(nome);
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
+        console.log(email);
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
+        console.log(senha);
     } else if (fkhospital == undefined) {
         res.status(400).send("Sua hospital a vincular está undefined!");
+        console.log(fkHospital);
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
