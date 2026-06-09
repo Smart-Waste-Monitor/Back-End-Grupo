@@ -29,64 +29,90 @@ function cadastrar() {
     return false;
 
     //Verificando se o nome é maior ou igual a um caractere
-  } else if (nomeVar.length <= 1) {
-    cardErro.style.display = "block";
-    cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
-    mensagem_erro.innerHTML =
-      "(Nome com um ou menos caracteres)";
-    finalizarAguardar();
-    return false;
+    } else if (nomeVar.length <= 1) {
+      cardErro.style.display = "block";
+      cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
+      mensagem_erro.innerHTML =
+        "(Nome com um ou menos caracteres)";
+      finalizarAguardar();
+      return false;
 
-    //Verificando se há algum @ no email
+      //Verificando se há algum @ no email
   } else if (emailVar.indexOf('@') == -1) {
     cardErro.style.display = "block";
     cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
     mensagem_erro.innerHTML =
-      "(Não contém arroba)";
+      "(Não contém '@' no email)";
     finalizarAguardar();
     return false;
 
-    //Verificando se há algum . no email
+  //Verificando se há algum . no email
   } else if (emailVar.indexOf('.') == -1) {
     cardErro.style.display = "block";
     cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
     mensagem_erro.innerHTML =
-      "(Não contém .)";
+      "(Não contém '.' no email)";
     finalizarAguardar();
     return false;
 
-    //Verificando se a senha é maior ou igual a 6 caracteres 
+  //Verificando se a senha é maior que 6 caracteres
   } else if (senhaVar.length <= 6) {
     cardErro.style.display = "block";
     cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
     mensagem_erro.innerHTML =
-      "(Senha com 6 ou menos digitos)";
+      "(A senha precisa ter 7 ou mais caracteres)";
     finalizarAguardar();
     return false;
 
-    //Verificando se a senha e a confirmacão são iguais
+  //Verificando se a senha e a confirmação são iguais
   } else if (senhaVar != confirmacaoSenhaVar) {
     cardErro.style.display = "block";
     cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
     mensagem_erro.innerHTML =
-      "(Não é igual a senha)";
+      "(As senhas não são iguais)";
+    finalizarAguardar();
+    return false;
+
+  //Verificando se a senha possui pelo menos um número
+  } else if (
+    !senhaVar.includes("1") &&
+    !senhaVar.includes("2") &&
+    !senhaVar.includes("3") &&
+    !senhaVar.includes("4") &&
+    !senhaVar.includes("5") &&
+    !senhaVar.includes("6") &&
+    !senhaVar.includes("7") &&
+    !senhaVar.includes("8") &&
+    !senhaVar.includes("9")
+  ) {
+    cardErro.style.display = "block";
+    cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
+    mensagem_erro.innerHTML =
+      "(A senha precisa ter números)";
+    finalizarAguardar();
+    return false;
+
+  //Verificando se existe pelo menos uma letra maiúscula
+  } else if (senhaVar.toLowerCase() == senhaVar) {
+    cardErro.style.display = "block";
+    cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
+    mensagem_erro.innerHTML =
+      "(A senha precisa ter pelo menos uma letra maiúscula)";
+    finalizarAguardar();
+    return false;
+
+  //Verificando se existe pelo menos uma letra minúscula
+  } else if (senhaVar.toUpperCase() == senhaVar) {
+    cardErro.style.display = "block";
+    cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
+    mensagem_erro.innerHTML =
+      "(A senha precisa ter pelo menos uma letra minúscula)";
     finalizarAguardar();
     return false;
 
   } else {
-    // fecha em 5 segundos se não tiver erros
+    // Fecha a mensagem após 5 segundos
     setTimeout(sumirMensagem, 5000);
-  }
-
-  //for concertado para rodar todas as "hospitais"
-  let codigoValido = false;
-
-  for (let i = 0; i < listahospitalCadastradas.length; i++) {
-    if (listahospitalCadastradas[i].codigo_ativacao === cod_hospVar) {
-      idhospitalVincular = listahospitalCadastradas[i].idhospital;
-      codigoValido = true;
-      break;
-    }
   }
 
   if (!codigoValido) {
