@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +11,10 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="./imgs/logo.png">
 </head>
-
 <body class="body-dash">
     <nav>
         <div class="logo">
             <img src="imgs/logo.png" alt="Logo da Smart Waste Systems" height="60" width="auto">
-            <!-- Por que alt? E isso em várias imagens... Leitor de tela em resumo! -->
         </div>
 
         <div class="titulo">
@@ -80,58 +77,56 @@
             <p class="kpi-ajuda">Clique na KPI para mais informações</p>
         </div>
 
-        <!-- ============================================================ -->
         <dialog id="minhaModal"></dialog>
 
         <div class="alerta_erro" id="telaEscura">
-    <div class="Alertas" id="Alertas">
-        <span class="icone_alerta">⚠️</span>
-        <div class="conteudo_alerta">
-            <span id="mensagem_erro"></span>
+
+        <div class="Alertas" id="Alertas">
+            <span class="icone_alerta">⚠️</span>
+            <div class="conteudo_alerta">
+                <span id="mensagem_erro"></span>
+            </div>
+            <span id="fechar" onclick="sumirMensagem()">&times;</span>
         </div>
-        <span id="fechar" onclick="sumirMensagem()">&times;</span>
     </div>
-</div>
 
-        <div class="tudo">
-            <div class="esquerda">
+    <div class="tudo">
+        <div class="esquerda">
+            <div class="filtro">
+                <p>Filtrar por</p>
 
-                <div class="filtro">
-                    <p>Filtrar por</p>
-
-                    <div class="selecao">
-                        <select name="select_filtro" id="selecao" onclick="filtroSelect()">
-                            <option value="0">Selecione uma opção</option>
-                            <option value="1">Radioativo</option>
-                            <option value="2">Infectante</option>
-                            <option value="3">Quimico</option>
-                            <option value="4">Perfurante</option>
-                            <option value="5">Comum</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="content">
-                    <canvas class="grafico" id="sensorDigital"></canvas>
+                <div class="selecao">
+                    <select name="select_filtro" id="selecao" onclick="filtroSelect()">
+                        <option value="0">Selecione uma opção</option>
+                        <option value="1">Radioativo</option>
+                        <option value="2">Infectante</option>
+                        <option value="3">Quimico</option>
+                        <option value="4">Perfurante</option>
+                        <option value="5">Comum</option>
+                    </select>
                 </div>
             </div>
-
-            <div class="direita">
-                <div class="legendas">
-                    <p class="legenda-normal">De 0% a 50%</p>
-                    <p class="legenda-alerta">De 50% a 75%</p>
-                    <p class="legenda-critico">De 75% a 100%</p>
-                </div>
-                <div class="filtros">
-                    <button onclick="lixeirasGeraisBusca()">Visão Geral</button>
-                    <button onclick="filtrarAlertas()">Filtrar por Alertas</button>
-                    <button onclick="filtrarCriticos()">Filtrar por Criticos</button>
-                </div>
-                <div class="lixeiras-container" id="lixeirasContainer">
-
-                </div>
+            <div class="content">
+                <canvas class="grafico" id="sensorDigital"></canvas>
             </div>
+        </div>
+        
+        <div class="direita">
+            <div class="legendas">
+                <p class="legenda-normal">De 0% a 50%</p>
+                <p class="legenda-alerta">De 50% a 75%</p>
+                <p class="legenda-critico">De 75% a 100%</p>
+            </div>
+            <div class="filtros">
+                <button onclick="lixeirasGeraisBusca()">Visão Geral</button>
+                <button onclick="filtrarAlertas()">Filtrar por Alertas</button>
+                <button onclick="filtrarCriticos()">Filtrar por Criticos</button>
+            </div>
+            <div class="lixeiras-container" id="lixeirasContainer"></div>
+        </div>
+    </div>
+
 </body>
-
 </html>
 <script src="./js/modal.js"></script>
 <script>
@@ -139,7 +134,6 @@
 
     let dados = [];
 
-    // Vamos começar a mexer com "zonas" olha que triste
     // Cada zona tem um valor inicial (from), valor final (to) e a cor de fundo (color)
     let Zonas = [
         { from: 0, to: 50, color: 'rgba(0, 200, 80, 0.10)' }, // Verde -> nível normal (0% a 50%)
@@ -147,50 +141,36 @@
         { from: 75, to: 100, color: 'rgba(255, 50, 50, 0.15)' }, // Vermelho -> crítico (75% a 100%)
     ];
 
-    // Plugin inline do Chart.js, pelo que entendi ele que desenha as zonas coloridas antes de qualquer dado aparecer
+    // Plugin inline do Chart.js, ele que desenha as zonas coloridas antes de qualquer dado aparecer
     let fundoZonas = {
-        id: 'fundoZonas', // identificador único do nosso plugin
+        id: 'fundoZonas',
 
-        // beforeDraw é tipo o que seria um gancho tlgd. O Chart.js vai chama essa função automaticamente
-        // antes de desenhar qualquer elemento! E por isso recebe o objeto 'chart' que contém tudo sobre o gráfico atual
+        // Executa antes do gráfico ser desenhado
         beforeDraw(chart) {
-            // Quebra e vamos pegar só o que vamo usa
-            // ctx -> Pensa num pincel, é tipo isso do chart, para desenhar tudo
-            // left/right -> posição em pixels onde a área do gráfico começa e termina (exclui os eixos e labels, pega só a área interna do negócio)
-            // y é a escala pae
             let { ctx, chartArea: { left, right }, scales: { y } } = chart;
 
-            // Zona verde (0% a 50%)
-            let yTop = y.getPixelForValue(Zonas[0].to); // borda superior -> valor 50 convertido em pixel
-            let yBottom = y.getPixelForValue(Zonas[0].from); // borda inferior -> valor 0 convertido em pixel
+            // Faixa verde 0% a 50%
+            let yTop = y.getPixelForValue(Zonas[0].to);
+            let yBottom = y.getPixelForValue(Zonas[0].from);
             ctx.fillStyle = Zonas[0].color;
-            ctx.fillRect(left, yTop, right - left, yBottom - yTop); // desenha a zona
+            ctx.fillRect(left, yTop, right - left, yBottom - yTop);
 
-            // Zona amarela (50% a 75%)
-            yTop = y.getPixelForValue(Zonas[1].to); // borda superior -> valor 75 convertido em pixel
-            yBottom = y.getPixelForValue(Zonas[1].from); // borda inferior -> valor 50 convertido em pixel
+            // Faixa amarela 50% a 75%
+            yTop = y.getPixelForValue(Zonas[1].to);
+            yBottom = y.getPixelForValue(Zonas[1].from);
             ctx.fillStyle = Zonas[1].color;
-            ctx.fillRect(left, yTop, right - left, yBottom - yTop); // desenha a zona
+            ctx.fillRect(left, yTop, right - left, yBottom - yTop);
 
-            // Zona vermelha (75% a 100%)
-            yTop = y.getPixelForValue(Zonas[2].to);    // borda superior -> valor 100 convertido em pixel
-            yBottom = y.getPixelForValue(Zonas[2].from);  // borda inferior -> valor 75 convertido em pixel
+            // Faixa vermelha 75% a 100%
+            yTop = y.getPixelForValue(Zonas[2].to);
+            yBottom = y.getPixelForValue(Zonas[2].from);
             ctx.fillStyle = Zonas[2].color;
-            ctx.fillRect(left, yTop, right - left, yBottom - yTop); // desenha a zona
+            ctx.fillRect(left, yTop, right - left, yBottom - yTop);
         }
     };
     var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
         type: 'line',
         plugins: [fundoZonas], // registra o plugin apenas neste gráfico
-        // data: {
-        //     labels: labels,
-        //     datasets: [{
-        //         label: 'Lixeira A',
-        //         data: dados,
-        //         borderColor: '#63B1BC',
-        //         backgroundColor: '#012790',
-        //     }]
-        // },
         options: {
             scales: {
                 x: { beginAtZero: true },
@@ -216,52 +196,46 @@
     }
 
     function atualizarGraficoFiltrado(dados) {
-        // Aqui eu vou criar um objeto que vai guardar os dados agrupando por lixeira tlgd?
         var grupos = {};
 
         for (let i = 0; i < dados.length; i++) {
             var nome = dados[i].nome_lixeira;
 
-            // Pensa que o grupos é vazio no inicio, conforme o loop vai indo, mas primeiro ele verifica se ja foi criado as
-            // condições tlgd? Então ele vai checar "se a lixeira já foi criada"
+            // Cria o grupo se ainda não existir
             if (!grupos[nome]) {
                 grupos[nome] = { labels: [], valores: [] };
             }
 
-            // Explicado no dashboard.js linha 256
+            // Pega apenas o horário da medição
             let dataStr = dados[i].data_medicao.toString().substring(0, 16);
             let partes = dataStr.split("T");
             let dataFormatada = partes[1];
 
-            // Adiciona o horário e o volume nos arrays da lixeira correspondente
+            // Salva horário e volume
             grupos[nome].labels.push(dataFormatada);
             grupos[nome].valores.push(dados[i].volume_percentual);
         }
 
-        // Object.keys(grupos) vai pegar o nome de cada lixeira!!
-        // Já o .map() vai percorrer cada nome e transformar em um dataset pro chart
         var cores = ['#63B1BC', '#4A90A4', '#2E6B7A', '#1A4A56', '#0D2F38', '#85C8D4'];
-        var datasets = Object.keys(grupos).map(function (nome, i) {
-            // Um exemplo de funcionamento do .map é:
-            // nome = nome da lixeira atual | i = posição do array
 
-            // % cores.length garante que se tiver mais lixeiras que cores, volta pro início do array
+        // Cria uma linha para cada lixeira
+        var datasets = Object.keys(grupos).map(function (nome, i) {
             return {
-                label: nome,// nome que aparece na legenda do gráfico
-                data: grupos[nome].valores,// array de volumes daquela lixeira
-                borderColor: cores[i % cores.length],// cor da linha
-                backgroundColor: cores[i % cores.length] + '33',// mesma cor com transparência 
+                label: nome,
+                data: grupos[nome].valores,
+                borderColor: cores[i % cores.length],
+                backgroundColor: cores[i % cores.length] + '33',
             };
         });
 
-        // Vai usar os labels da primeira lixeira como o eixo X de tudo!
+        // Usa os horários da primeira lixeira no eixo X
         var labelsComuns = grupos[Object.keys(grupos)[0]].labels;
 
-        // Atualiza o gráfico com os novos datasets e labels
         sensorDigital.data.labels = labelsComuns;
         sensorDigital.data.datasets = datasets;
         sensorDigital.update();
     }
 </script>
+
 <script src="./js/dashboard.js"></script>
 <script src="./js/sessao.js"></script>
