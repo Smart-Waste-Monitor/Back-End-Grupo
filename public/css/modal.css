@@ -65,6 +65,7 @@ dialog{
 
 .Alertas {
     background: linear-gradient(135deg, #7a1212, #4f0a0a);
+    overflow:auto; 
     color: #fff;
     width: 420px;
     padding: 22px 24px;
