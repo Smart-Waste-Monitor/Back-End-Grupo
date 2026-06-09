@@ -1,17 +1,14 @@
 let listahospitalCadastradas = [];
+let codigoValido = false;
+let idhospitalVincular;
 
 function cadastrar() {
-  // Valoriaveis dos campos de input
   let nomeVar = nome_completo.value;
   let senhaVar = senha_imp.value;
   let confirmacaoSenhaVar = confirmar_senha.value;
   let emailVar = email.value;
   let cod_hospVar = Cod_hospital_imp.value;
 
-
-  let idhospitalVincular;
-
-  // Verificando se há algum campo em branco
   if (
     nomeVar == "" ||
     emailVar == "" ||
@@ -21,59 +18,51 @@ function cadastrar() {
   ) {
     cardErro.style.display = "block";
     cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
-
-    mensagem_erro.innerHTML =
-      "(Mensagem de erro para todos os campos em branco)";
-
+    mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
     finalizarAguardar();
     return false;
 
-    //Verificando se o nome é maior ou igual a um caractere
-    } else if (nomeVar.length <= 1) {
-      cardErro.style.display = "block";
-      cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
-      mensagem_erro.innerHTML =
-        "(Nome com um ou menos caracteres)";
-      finalizarAguardar();
-      return false;
-
-      //Verificando se há algum @ no email
-  } else if (emailVar.indexOf('@') == -1) {
+    // Verificando se o nome é maior ou igual a um caractere
+  } else if (nomeVar.length <= 1) {
     cardErro.style.display = "block";
     cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
-    mensagem_erro.innerHTML =
-      "(Não contém '@' no email)";
+    mensagem_erro.innerHTML = "(Nome com um ou menos caracteres)";
     finalizarAguardar();
     return false;
 
-  //Verificando se há algum . no email
-  } else if (emailVar.indexOf('.') == -1) {
+    // Verificando se há algum @ no email
+  } else if (emailVar.indexOf("@") == -1) {
     cardErro.style.display = "block";
     cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
-    mensagem_erro.innerHTML =
-      "(Não contém '.' no email)";
+    mensagem_erro.innerHTML = "(Não contém '@' no email)";
     finalizarAguardar();
     return false;
 
-  //Verificando se a senha é maior que 6 caracteres
+    // Verificando se há algum . no email
+  } else if (emailVar.indexOf(".") == -1) {
+    cardErro.style.display = "block";
+    cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
+    mensagem_erro.innerHTML = "(Não contém '.' no email)";
+    finalizarAguardar();
+    return false;
+
+    // Verificando se a senha é maior que 6 caracteres
   } else if (senhaVar.length <= 6) {
     cardErro.style.display = "block";
     cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
-    mensagem_erro.innerHTML =
-      "(A senha precisa ter 7 ou mais caracteres)";
+    mensagem_erro.innerHTML = "(A senha precisa ter 7 ou mais caracteres)";
     finalizarAguardar();
     return false;
 
-  //Verificando se a senha e a confirmação são iguais
+    // Verificando se a senha e a confirmação são iguais
   } else if (senhaVar != confirmacaoSenhaVar) {
     cardErro.style.display = "block";
     cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
-    mensagem_erro.innerHTML =
-      "(As senhas não são iguais)";
+    mensagem_erro.innerHTML = "(As senhas não são iguais)";
     finalizarAguardar();
     return false;
 
-  //Verificando se a senha possui pelo menos um número
+    // Verificando se a senha possui pelo menos um número
   } else if (
     !senhaVar.includes("1") &&
     !senhaVar.includes("2") &&
@@ -87,26 +76,23 @@ function cadastrar() {
   ) {
     cardErro.style.display = "block";
     cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
-    mensagem_erro.innerHTML =
-      "(A senha precisa ter números)";
+    mensagem_erro.innerHTML = "(A senha precisa ter números)";
     finalizarAguardar();
     return false;
 
-  //Verificando se existe pelo menos uma letra maiúscula
+    // Verificando se existe pelo menos uma letra maiúscula
   } else if (senhaVar.toLowerCase() == senhaVar) {
     cardErro.style.display = "block";
     cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
-    mensagem_erro.innerHTML =
-      "(A senha precisa ter pelo menos uma letra maiúscula)";
+    mensagem_erro.innerHTML = "(A senha precisa ter pelo menos uma letra maiúscula)";
     finalizarAguardar();
     return false;
 
-  //Verificando se existe pelo menos uma letra minúscula
+    // Verificando se existe pelo menos uma letra minúscula
   } else if (senhaVar.toUpperCase() == senhaVar) {
     cardErro.style.display = "block";
     cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
-    mensagem_erro.innerHTML =
-      "(A senha precisa ter pelo menos uma letra minúscula)";
+    mensagem_erro.innerHTML = "(A senha precisa ter pelo menos uma letra minúscula)";
     finalizarAguardar();
     return false;
 
@@ -115,27 +101,39 @@ function cadastrar() {
     setTimeout(sumirMensagem, 5000);
   }
 
-  if (!codigoValido) {
+  // Procura o hospital cujo codigo_ativacao bate com o código digitado pelo usuário
+  let hospitalEncontrado = null;
+
+  for (let i = 0; i < listahospitalCadastradas.length; i++) {
+    if (listahospitalCadastradas[i].codigo_ativacao == cod_hospVar) {
+      hospitalEncontrado = listahospitalCadastradas[i];
+      break;
+    }
+  }
+
+  // Se nenhum hospital foi encontrado com esse código, bloqueia o cadastro
+  if (hospitalEncontrado == null) {
     cardErro.style.display = "block";
     cardErro.style.background = "linear-gradient(135deg, #dc2626, #b91c1c)";
     mensagem_erro.innerHTML = "Código do hospital inválido.";
+    finalizarAguardar();
     return false;
   }
 
-  // Enviando o valor da nova input
+  idhospitalVincular = hospitalEncontrado.idhospital;
+
+  // Enviando os dados para o servidor
   fetch("/usuarios/cadastrar", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      // atributo que recebe o valor recuperado aqui
       nomeServer: nomeVar,
       emailServer: emailVar,
       senhaServer: senhaVar,
       cod_hospServer: cod_hospVar,
-
-      idhospitalVincularServer: idhospitalVincular
+      idhospitalVincularServer: idhospitalVincular, // agora com valor correto
     }),
   })
     .then(function (resposta) {
@@ -165,33 +163,30 @@ function cadastrar() {
   return false;
 }
 
-// Listando hospitals cadastradas 
 function listar() {
-fetch("/hospital/listar", {
-  method: "GET",
-})
-  .then(function (resposta) {
-    resposta.json().then((hospital) => {
-
-      listahospitalCadastradas = [];
-
-      hospital.forEach((hospital) => {
-        listahospitalCadastradas.push(hospital);
-
-        console.log(listahospitalCadastradas);
-        console.log(listahospitalCadastradas[0].codigo_ativacao);
-      });
-    });
+  fetch("/hospital/listar", {
+    method: "GET",
   })
-  .catch(function (resposta) {
-    console.log(`#ERRO: ${resposta}`);
-  });
+    .then(function (resposta) {
+      resposta.json().then((hospitais) => {
+
+        // Limpa a lista antes de repovoar
+        listahospitalCadastradas = [];
+
+        for (let i = 0; i < hospitais.length; i++) {
+          listahospitalCadastradas.push(hospitais[i]);
+        }
+
+        console.log("Hospitais carregados:", listahospitalCadastradas);
+      });
+    })
+    .catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
 }
 
-// Esconde a mensagem
 function sumirMensagem() {
   cardErro.style.display = "none";
 }
 
-function finalizarAguardar() {
-}
+function finalizarAguardar() { }
