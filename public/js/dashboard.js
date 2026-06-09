@@ -18,6 +18,7 @@ function lixeirasGeraisBusca() {
             console.log(buscar1)
             lixeirasContainer.innerHTML = '';
             let contarCheio = 0;
+            let contarRadioativo = 0;
             let contarQuimico = 0;
             let contarYellow = 0;
             let contarVazio = 0;
@@ -65,15 +66,19 @@ function lixeirasGeraisBusca() {
                     </div>
                 `;
 
-                if (classe == 'lixeira-card red' && imagem == 'imgs/imgPorTipo/lixoRadioativo.png') {
+                if (imagem == 'imgs/imgPorTipo/lixoRadioativo.png') {
+                    contarRadioativo++;
+                }
+
+                if (imagem == 'imgs/imgPorTipo/lixoQuimico.png') {
                     contarQuimico++;
                 }
 
                 if (classe == 'lixeira-card red') {
                     contarCheio++;
-                    msg2 = `\nNome da Lixeira: ${buscar1[i].nome_lixeira}\nVolume: ${distancia}\n`;
-                    msg += `\nNome da Lixeira: ${buscar1[i].nome_lixeira}\nVolume: ${distancia}\n`;
-                    cadastrarAlerta(msg2,distancia,buscar1[i].ultima_medicao, buscar1[i].id_leitura)
+                    msg2 = `\nNome da Lixeira: ${buscar1[i].nome_lixeira}\n${distancia}\n`;
+                    msg += `\nNome da Lixeira: ${buscar1[i].nome_lixeira}\n${distancia}\n`;
+                    cadastrarAlerta(msg2, distancia, buscar1[i].ultima_medicao, buscar1[i].id_leitura)
                 } else if (classe == 'lixeira-card') {
                     contarVazio++;
                 } else {
@@ -88,18 +93,27 @@ function lixeirasGeraisBusca() {
                 msg = `Número de Lixeiras Críticas: ${contarCheio}\n${msg}`
                 Alertas.style.display = "flex"
                 mensagem_erro.innerHTML = msg
-                
+
             }
             valorCheio.innerHTML = contarCheio;
             valorVazio.innerHTML = contarVazio;
             valorCheioYellow.innerHTML = contarYellow;
             console.log(contarQuimico);
-            if (contarQuimico > 0) {
-                valorRadioativaCheia.innerHTML = `Quantidade: ${contarQuimico}`;
-                kpi.classList.add('red');
+            if (contarRadioativo > 0) {
+                valorRadioativaCheia.innerHTML = `Quantidade: ${contarRadioativo}`;
             } else {
                 valorRadioativaCheia.innerHTML = `Nenhuma Cheia`
             }
+
+            if (contarQuimico > 0) {
+                valorQuimicoCheia.innerHTML = `Quantidade: ${contarQuimico}`;
+            } else {
+                valorQuimicoCheia.innerHTML = `Nenhuma Cheia`
+            }
+
+            console.log(contarQuimico)
+            verificarAlertasKpi()
+
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
@@ -388,4 +402,36 @@ consultadoAlerta();
 function sumirMensagem() {
     Alertas.style.display = "none"
     telaEscura.style.display = "none"
+}
+
+
+function verificarAlertasKpi() {
+    let maiorHorasRadio = 0;
+    let maiorHorasQuimico = 0;
+
+    for (let i = 0; i < buscar1.length; i++) {
+        let lixeira = buscar1[i];
+        if (lixeira.volume_percentual > 0) {
+            let agora = new Date(); // to puxando data de agora
+            let dataMedicao = new Date(lixeira.ultima_medicao);
+            let diferencaMin = Math.floor((agora - dataMedicao) / 1000 / 60);
+            let horas = Math.floor(diferencaMin / 60);
+            if (lixeira.tipo_residuo.includes("Radioativo")) {
+                if (horas > maiorHorasRadio) {
+                    maiorHorasRadio = horas;
+                }
+            }
+            if (lixeira.tipo_residuo.includes("Químico")) {
+                if (horas > maiorHorasQuimico) {
+                    maiorHorasQuimico = horas;
+                }
+            }
+        }
+    }
+    if (maiorHorasRadio >= 12) {
+        document.getElementById('kpiRadio').classList.add('red');
+    }
+    if (maiorHorasQuimico >= 12) {
+        document.getElementById('kpiQuimico').classList.add('red');
+    }
 }

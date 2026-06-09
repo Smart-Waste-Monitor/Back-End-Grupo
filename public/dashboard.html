@@ -35,16 +35,16 @@
 
     <div class="container">
         <div class="indicadores">
-            <div class="kpi" id="kpi" onclick="modalRadioativo()">
+            <div class="kpi" id="kpiRadio" onclick="modalRadioativo()">
                 <div class="kpiInfo">
-                    <span class="kpiTitulo">Radioativas Alertas</span>
+                    <span class="kpiTitulo">Radioativas</span>
                     <span class="kpiSecundario status" id="valorRadioativaCheia"></span>
                 </div>
             </div>
 
-            <div class="kpi"  id="kpi" onclick="modalQuimicos()">
+            <div class="kpi"  id="kpiQuimico" onclick="modalQuimicos()">
                 <div class="kpiInfo">
-                    <span class="kpiTitulo">Quimicas Alertas</span>
+                    <span class="kpiTitulo">Quimicas</span>
                     <span class="kpiSecundario status" id="valorQuimicoCheia"></span>
                 </div>
             </div>
@@ -103,7 +103,7 @@
                         <select name="select_filtro" id="selecao" onclick="filtroSelect()">
                             <option value="0">Selecione uma opção</option>
                             <option value="1">Radioativo</option>
-                            <option value="2">Biologico</option>
+                            <option value="2">Infectante</option>
                             <option value="3">Quimico</option>
                             <option value="4">Perfurante</option>
                             <option value="5">Comum</option>
