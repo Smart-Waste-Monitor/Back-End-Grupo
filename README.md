@@ -98,7 +98,9 @@ Abaixo, uma figura que ajuda a compreender o caminho percorrido para, por exempl
 - Assim que criada a tabela, faça todo o caminho de **front-end → routes → controllers → models** replicando o que já existe!  
 - Exemplo, se você quiser a funcionalidade de adicionar um novo Aquário, deve criar arquivos referentes ao aquario nos diretórios e replicar também as funções.  
 - Dica: A implementação de AVISO já contém o CRUD completo! :wink:
- 
+
+ <img width="1466" height="532" alt="image" src="https://github.com/user-attachments/assets/1f32c178-f1c9-4b59-9221-35c10ff60ab1" />
+
 ### Fontes bibliográficas
 
 [1] https://datatracker.ietf.org/doc/html/rfc2396  
